@@ -358,6 +358,10 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ## Community Resources
 
+### Related Projects
+
+- [LLM Safe Haven](https://github.com/pleasedodisturb/llm-safe-haven) - Security toolkit for AI coding agents. `npx llm-safe-haven` hardens Claude Code, Cursor, Windsurf in 60 seconds. Companion project — agent retries from security failures waste tokens.
+
 ### Blogs
 
 - [Simon Willison: LLM Pricing](https://simonwillison.net/tags/llm-pricing/) - Ongoing coverage of cost collapse.
