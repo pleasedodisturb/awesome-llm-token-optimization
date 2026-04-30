@@ -79,6 +79,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
+- [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
 
@@ -93,6 +94,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [Dynamic Routing Survey (2026)](https://arxiv.org/abs/2603.04445) - Comprehensive survey.
 - [IBM LLM Routers](https://research.ibm.com/blog/LLM-routers) - IBM's research on training routers.
 - [LLM Routing Explained](https://towardsdatascience.com/llm-routing-intuitively-and-exhaustively-explained-5b0789fe27aa/) - Intuitive guide.
+- [vLLM Semantic Router paper](https://arxiv.org/abs/2603.04444) - Signal-driven decision routing for Mixture-of-Modality models; composable signal orchestration across heuristic and neural classifiers.
 
 ## Prompt Compression
 
@@ -222,7 +224,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 ## Cost Tracking Tools
 
 - [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM observability + cost tracking. [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
-- [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
+- [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). **Note: [Acquired by Mintlify](https://www.helicone.ai/blog/joining-mintlify) in March 2026; maintenance mode only.** ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy with [spend tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing). ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [tokencost](https://github.com/AgentOps-AI/tokencost) - USD cost estimates for 400+ LLMs. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/tokencost)
 - [AgentOps](https://github.com/AgentOps-AI/agentops) - Agent monitoring with LLM cost tracking. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/agentops)
@@ -346,6 +348,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SlimInfer](https://arxiv.org/abs/2508.06447) | 2025 | 1.88x latency reduction |
 | [Mirror Speculative Decoding](https://arxiv.org/abs/2510.13161) | 2025 | Breaks serial barrier |
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
+| [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
+| [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
 
 ### Prompt Optimization
 
@@ -355,6 +359,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Concise Chain-of-Thought](https://arxiv.org/abs/2401.05618) | 2024 | 48.7% shorter, negligible quality loss |
 | [Chain of Draft](https://arxiv.org/abs/2502.18600) | 2025 | Only 7.6% of CoT tokens used |
 | [Semantic Compression](https://arxiv.org/abs/2304.12512) | 2023 | Semantic compression with LLMs |
+| [Tokenomics](https://arxiv.org/abs/2601.14470) | 2026 | Code review = 59.4% of tokens in agentic SE; input context dominates at 53.9% |
 
 ## Community Resources
 
