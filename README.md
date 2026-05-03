@@ -44,15 +44,16 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens. Automatic mode available for multi-turn conversations (Feb 2026).
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
+- [Anthropic Task Budgets](https://platform.claude.com/docs/en/build-with-claude/task-budgets) - Public beta on Opus 4.7; advisory token budget for the full agentic loop; model self-regulates spend across multi-step tasks. Requires `task-budgets-2026-03-13` beta header.
 - [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount, automatic for 1024+ token prompts.
 - [OpenAI Prompt Caching Cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201) - Advanced techniques with code.
 - [Google Gemini Context Caching](https://ai.google.dev/gemini-api/docs/caching) - Implicit (auto) and explicit caching, 90% discount.
 - [Google Vertex AI Caching](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview) - Enterprise context caching.
-- [DeepSeek KV Cache](https://api-docs.deepseek.com/guides/kv_cache) - Disk-based, 64-token granularity, 90% savings.
+- [DeepSeek KV Cache](https://api-docs.deepseek.com/guides/kv_cache) - Disk-based, 64-token granularity. Cache-hit price cut to 1/10 of standard (April 2026). **Note: `deepseek-chat`/`deepseek-reasoner` deprecated July 24, 2026; migrate to `deepseek-v4-flash`/`deepseek-v4-pro`.**
 
 ### Strategy: Cached Prefix Pattern
 
@@ -77,7 +78,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 
 - [RouteLLM](https://github.com/lm-sys/RouteLLM) - Open-source LLM router by LMSYS. Trains routers from preference data; 2x+ cost reduction. ![Stars](https://img.shields.io/github/stars/lm-sys/RouteLLM)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
-- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
+- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Note: archived December 2025.** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
@@ -105,6 +106,7 @@ Reduce prompt size while preserving information quality.
 - [LLMLingua](https://github.com/microsoft/LLMLingua) - Up to 20x compression. Coarse-to-fine iterative method. Integrates with LangChain/LlamaIndex. ![Stars](https://img.shields.io/github/stars/microsoft/LLMLingua)
 - [Headroom](https://github.com/chopratejas/headroom) - Routes JSON/code/text to specialized compressors.
 - [code2prompt](https://github.com/mufeedvh/code2prompt) - Codebase to LLM prompt with token counting. ![Stars](https://img.shields.io/github/stars/mufeedvh/code2prompt)
+- [RTK](https://github.com/rtk-ai/rtk) - CLI proxy that filters/compresses shell command outputs (git, docker, cargo, AWS, etc.) before they reach AI coding tools; 60-90% token reduction on dev commands; works with Claude Code, Cursor, Copilot, Gemini CLI. Single Rust binary. ![Stars](https://img.shields.io/github/stars/rtk-ai/rtk)
 
 ### Research
 
@@ -181,6 +183,7 @@ Server-side optimizations for inference efficiency.
 - [NVIDIA Model Optimizer](https://github.com/NVIDIA/Model-Optimizer) - Quantization, pruning, distillation, speculative decoding. ![Stars](https://img.shields.io/github/stars/NVIDIA/Model-Optimizer)
 - [TurboQuant](https://github.com/tonbistudio/turboquant-pytorch) - Google's ICLR 2026; 5x KV cache compression.
 - [aibrix](https://github.com/vllm-project/aibrix) - Cost-efficient infrastructure for GenAI inference. ![Stars](https://img.shields.io/github/stars/vllm-project/aibrix)
+- [LMCache](https://github.com/lmcache/lmcache) - KV cache layer for enterprise inference; offloads cache to CPU/disk/S3; shares KV cache across engines; 3-10x throughput improvement with vLLM/SGLang. ![Stars](https://img.shields.io/github/stars/lmcache/lmcache)
 
 ### Research
 
@@ -246,6 +249,14 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
+
+### Notable Recent Changes (May 2026)
+
+- **Anthropic** (March 13): 1M-token context now at standard pricing for Opus 4.6/Sonnet 4.6 — no long-context surcharge. [Details](https://thenewstack.io/claude-million-token-pricing/)
+- **Anthropic** (April 16): Claude Opus 4.7 released at $5/$25 per MTok; 1M context; new tokenizer may use up to 35% more tokens for the same content. [Announcement](https://www.anthropic.com/news/claude-opus-4-7)
+- **DeepSeek**: V4 Flash ($0.14/$0.28 per MTok) and V4 Pro ($1.74/$3.48) are now primary models; cache-hit price cut to 1/10 (April 26); `deepseek-chat`/`deepseek-reasoner` deprecated July 24, 2026. [Pricing](https://api-docs.deepseek.com/quick_start/pricing)
+- **OpenAI** (March 5): GPT-5.4 family launched; Standard at $2.50/$15 per MTok, Nano at $0.20/$1.25; cached inputs 75-90% off; o3 received 80% price cut. [Details](https://openai.com/index/introducing-gpt-5-4/)
+- **Google** (February 19): Gemini 3.1 Pro in preview ($2.00/$12.00 per MTok, 1M context, ARC-AGI-2 77.1%); Gemini 3 Flash ($0.50/$3.00). [Post](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/)
 
 ### Provider Pricing Pages
 
@@ -350,6 +361,10 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [LMCache](https://arxiv.org/abs/2510.09665) | 2025 | KV cache across GPU/CPU/disk/network; 15x throughput with vLLM |
+| [Thin Keys, Full Values](https://arxiv.org/abs/2603.04427) | 2026 | Low-dim attention selection; saves 25GB KV cache per 7B model at 128K context |
+| [Stochastic KV Routing](https://arxiv.org/abs/2604.22782) | 2026 | Depth-wise cache sharing; full per-layer KV cache is redundant |
+| [CapKV](https://arxiv.org/abs/2604.25975) | 2026 | Capacity-aware eviction via information-theoretic objective |
 
 ### Prompt Optimization
 
