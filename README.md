@@ -76,8 +76,9 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 ### Frameworks
 
 - [RouteLLM](https://github.com/lm-sys/RouteLLM) - Open-source LLM router by LMSYS. Trains routers from preference data; 2x+ cost reduction. ![Stars](https://img.shields.io/github/stars/lm-sys/RouteLLM)
-- [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
-- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
+- [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. **Note: v1.82.7/v1.82.8 (Mar 24, 2026) were briefly compromised in a [supply chain attack](https://docs.litellm.ai/blog/security-update-march-2026); use ≥v1.82.9.** ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
+- [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - 16+ routing strategies (KNN, SVM, MLP, graph-based, multi-round, agentic). RouteProfile framework for designing LLM profiles for routing released May 2026. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
+- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Archived December 2025; read-only.** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
@@ -190,6 +191,8 @@ Server-side optimizations for inference efficiency.
 - [KV-Compress](https://arxiv.org/abs/2410.00161) - Variable-head-rate compression, PagedAttention compatible.
 - [vAttention](https://arxiv.org/abs/2405.04437) - Up to 1.99x decode throughput over vLLM.
 - [Semantic Prompt Caching (VectorQ)](https://arxiv.org/abs/2502.03771) - Up to 100x latency reduction.
+- [Thin Keys, Full Values](https://arxiv.org/abs/2603.04427) - SVD-based key compression; 75% key cache savings at ~2% quality cost. Composes with GQA + quantization for up to 16x combined key cache compression. (2026)
+- [WindowQuant](https://arxiv.org/abs/2605.02262) - Window-level mixed-precision KV cache quantization for VLMs; faster configuration search than token-level approaches. (May 2026)
 - [Speculative Sampling](https://github.com/feifeibear/LLMSpeculativeSampling) - Fast inference via speculative decoding.
 - [Awesome KV Cache Compression](https://github.com/October2001/Awesome-KV-Cache-Compression) - Must-read paper list.
 
@@ -223,7 +226,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ## Cost Tracking Tools
 
-- [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM observability + cost tracking. [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
+- [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM engineering platform (observability, evals, prompt management). [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). **Acquired by ClickHouse (Jan 2026); MIT license preserved, no pricing gates.** ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
 - [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). **Note: [Acquired by Mintlify](https://www.helicone.ai/blog/joining-mintlify) in March 2026; maintenance mode only.** ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy with [spend tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing). ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [tokencost](https://github.com/AgentOps-AI/tokencost) - USD cost estimates for 400+ LLMs. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/tokencost)
@@ -247,6 +250,13 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
 
+### Recent Pricing Changes (May 2026)
+
+- **Anthropic**: [Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7) released Apr 16 at same $5/$25/MTok. **Long-context surcharges eliminated** (Mar 13) — 1M-token requests on Opus 4.6/Sonnet 4.6 now billed at standard per-token rates (no more 2x/1.5x premium above 200K). Caveat: Opus 4.7's new tokenizer may generate up to 35% more tokens than 4.6 for identical input.
+- **Google Gemini**: Flagship is now Gemini 3.1 Pro ($2/$12/MTok ≤200K, $4/$18 above) and Flash-Lite ($0.25/$1.50/MTok). Pro models removed from free tier (Apr 1). Cached input 90% off ($0.20/MTok on 3.1 Pro).
+- **OpenAI**: GPT-5.5 is current default ($5/$30/MTok); GPT-5.4 at $2.50/$15/MTok. o3 received an 80% price cut. Batch/Flex tiers apply 50% discounts; Priority tier 2x.
+- **DeepSeek**: V4 Flash ($0.14/$0.28/MTok), V4 Pro at 75% discount until May 31. `deepseek-chat`/`deepseek-reasoner` aliases deprecated July 24 — use `deepseek-v4-flash`/`deepseek-v4-pro` directly.
+
 ### Provider Pricing Pages
 
 - [Anthropic](https://docs.anthropic.com/en/docs/about-claude/pricing) | [OpenAI](https://openai.com/api/pricing/) | [Google Gemini](https://ai.google.dev/gemini-api/docs/pricing) | [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing) | [Mistral](https://mistral.ai/pricing)
@@ -256,6 +266,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 ### Official Guides
 
 - [Anthropic Prompt Engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) - Master guide.
+- [Anthropic Effort Parameter](https://platform.claude.com/docs/en/build-with-claude/effort) - Trade token spend for response thoroughness (max/xhigh/high/medium/low). Supported on Opus 4.7, Sonnet 4.6. `medium` effort cuts tokens significantly for most tasks; `low` is best for high-volume simple requests.
 - [Anthropic Claude 4 Best Practices](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) - Model-specific.
 - [Anthropic Interactive Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial) - 9-chapter course.
 - [Anthropic Tool Search](https://www.anthropic.com/engineering/advanced-tool-use) - 85% token reduction for large tool libraries.
@@ -350,6 +361,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [Thin Keys, Full Values](https://arxiv.org/abs/2603.04427) | 2026 | 75% key cache savings via SVD; up to 16x combined compression with GQA+quantization |
+| [WindowQuant](https://arxiv.org/abs/2605.02262) | 2026 | Window-level mixed-precision KV cache quantization for VLMs; faster than token-level search |
 
 ### Prompt Optimization
 
