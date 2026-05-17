@@ -48,11 +48,11 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
-- [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount, automatic for 1024+ token prompts.
+- [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount, automatic for 1024+ token prompts. GPT-5.5+ defaults to 24-hour cache retention; no additional charge for writes or storage.
 - [OpenAI Prompt Caching Cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201) - Advanced techniques with code.
 - [Google Gemini Context Caching](https://ai.google.dev/gemini-api/docs/caching) - Implicit (auto) and explicit caching, 90% discount.
 - [Google Vertex AI Caching](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview) - Enterprise context caching.
-- [DeepSeek KV Cache](https://api-docs.deepseek.com/guides/kv_cache) - Disk-based, 64-token granularity, 90% savings.
+- [DeepSeek KV Cache](https://api-docs.deepseek.com/guides/kv_cache) - Disk-based, 64-token granularity, 90% savings. **V4 migration:** `deepseek-chat`/`deepseek-reasoner` deprecated; migrate to `deepseek-v4-flash`/`deepseek-v4-pro` before July 24, 2026. Cache hit price reduced to 1/10 of launch price (April 26, 2026).
 
 ### Strategy: Cached Prefix Pattern
 
@@ -82,6 +82,8 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
+- [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - Open-source library with 16+ routing strategies across four categories: single-round, multi-round, agentic, and personalized. Includes unified CLI, Gradio UI, and multimodal support. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
+- [MTRouter](https://github.com/ZhangYiqun018/MTRouter) - ACL 2026; cost-aware multi-turn routing via history-model joint embeddings; 58.7% cost reduction vs GPT-5 on ScienceWorld. ![Stars](https://img.shields.io/github/stars/ZhangYiqun018/MTRouter)
 
 ### Curated Lists
 
@@ -251,6 +253,13 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 - [Anthropic](https://docs.anthropic.com/en/docs/about-claude/pricing) | [OpenAI](https://openai.com/api/pricing/) | [Google Gemini](https://ai.google.dev/gemini-api/docs/pricing) | [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing) | [Mistral](https://mistral.ai/pricing)
 
+### Notable Recent Changes (May 2026)
+
+- **Claude Opus 4.7** (Apr 16, 2026): Same price as Opus 4.6 ($5/$25 per 1M tokens), but new tokenizer may use up to 35% more tokens for equivalent text — effective cost may be higher than the per-token rate implies.
+- **OpenAI GPT-5.5**: Flagship at $5/$30 per 1M tokens with 1M-token context; extended prompt caching defaults to 24-hour retention.
+- **Gemini 3.1 Pro** (Feb 19, 2026): $2/$12 per 1M tokens (≤200K context), $4/$18 (>200K); Pro models removed from free tier April 1, 2026. Flash/Flash-Lite remain free.
+- **DeepSeek V4**: `deepseek-chat`/`deepseek-reasoner` model IDs deprecated — migrate to `deepseek-v4-flash`/`deepseek-v4-pro` before **July 24, 2026**. Cache hit price cut to 1/10 of launch price (Apr 26, 2026).
+
 ## Prompt Engineering for Efficiency
 
 ### Official Guides
@@ -309,6 +318,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SCOPE](https://arxiv.org/abs/2508.15813) | 2025 | Training-free generative rewriting |
 | [Dynamic Compressing](https://arxiv.org/abs/2504.11004) | 2025 | MDP-based adaptive token removal |
 | [Empirical Study](https://arxiv.org/abs/2505.00019) | 2025 | Benchmarks 6 methods across 13 datasets |
+| [Prompt Compression in the Wild](https://arxiv.org/abs/2604.02985) | 2026 | Systematic real-world study; LLMLingua achieves 18% end-to-end speedup when within optimal operating window |
+| [Telegraph English](https://arxiv.org/abs/2605.04426) | 2026 | Symbol-rich rewriting (not deletion); 99.1% accuracy at 50% token reduction, outperforms LLMLingua-2 |
 
 ### Model Routing & Cascading
 
@@ -320,6 +331,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Unified Routing + Cascading](https://arxiv.org/abs/2410.10347) | 2024 | +14% over individual strategies |
 | [Dynamic Routing Survey](https://arxiv.org/abs/2603.04445) | 2026 | Comprehensive survey |
 | [Pay for Hints](https://arxiv.org/abs/2601.22132) | 2026 | Small model gets hints, not full answers |
+| [MTRouter](https://arxiv.org/abs/2604.23530) | 2026 | Cost-aware multi-turn routing; 58.7% cost savings on ScienceWorld (ACL 2026) |
 
 ### Context & Inference
 
@@ -350,6 +362,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [KV-Fold](https://arxiv.org/abs/2605.12471) | 2026 | Training-free long-context inference; treats KV cache as a left fold accumulator over sequence chunks |
+| [Inference Engines Survey](https://arxiv.org/abs/2505.01658) | 2026 | Comprehensive evaluation of 25 open-source and commercial inference engines across optimization dimensions |
 
 ### Prompt Optimization
 
