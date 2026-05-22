@@ -206,7 +206,7 @@ Different browser automation approaches consume vastly different context.
 |-------|-----------|-----------|------|
 | WebFetch | ~1.5 KB (AI-summarized) | **20x better** | [Docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) |
 | Playwright MCP | ~10-33 KB (accessibility tree) | Baseline | [GitHub](https://github.com/microsoft/playwright-mcp) |
-| Agent Browser | ~28 KB (accessibility tree) | Similar | [GitHub](https://github.com/vercel-labs/agent-browser) |
+| Agent Browser ⚠️ | ~28 KB (accessibility tree) | Project unmaintained 2026-05 — superseded by [browser-use](https://github.com/browser-use/browser-use) direct mode + [Playwright MCP](https://github.com/microsoft/playwright-mcp) | [GitHub](https://github.com/vercel-labs/agent-browser) |
 | Lightpanda | ~16 KB (raw markdown) | 2x better | [GitHub](https://github.com/lightpanda-io/browser) |
 
 For 10-page workflows: WebFetch = ~15KB vs Playwright = ~330KB total context consumed.
