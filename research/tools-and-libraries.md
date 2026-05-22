@@ -78,7 +78,7 @@ Open source tools for cost tracking, routing, compression, and inference optimiz
 |------|-----------|-------------|------|
 | WebFetch | ~1.5KB | AI-summarized, 20x more efficient | [Docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool) |
 | Playwright MCP | ~33KB | Accessibility tree snapshots | [GitHub](https://github.com/microsoft/playwright-mcp) |
-| Agent Browser | ~28KB | Rust CLI, full Chromium | [GitHub](https://github.com/vercel-labs/agent-browser) |
+| Agent Browser ⚠️ | ~28KB | Rust CLI, full Chromium — **project unmaintained 2026-05; superseded by [browser-use](https://github.com/browser-use/browser-use) direct mode + [Playwright MCP](https://github.com/microsoft/playwright-mcp)** | [GitHub](https://github.com/vercel-labs/agent-browser) |
 | Lightpanda | ~16KB | Zig browser, 1.8s/page | [GitHub](https://github.com/lightpanda-io/browser) |
 | browser-use | - | Foundation library for AI browser agents | [GitHub](https://github.com/browser-use/browser-use) |
 
