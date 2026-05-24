@@ -44,9 +44,10 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens. Workspace-level cache isolation as of Feb 2026.
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
+- [Anthropic Cache Diagnostics (beta)](https://docs.anthropic.com/en/release-notes/api) - Pass `diagnostics.previous_message_id` to receive `cache_miss_reason` explaining where the prefix diverged; Usage & Cost API provides cache-read-ratio dashboards.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
 - [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount, automatic for 1024+ token prompts.
 - [OpenAI Prompt Caching Cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201) - Advanced techniques with code.
@@ -79,6 +80,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
+- [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - Open-source library with 16+ routers across 4 categories (single-round, multi-round, agentic, personalized); RouteProfile framework for systematic LLM profile design. May 2026. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
@@ -95,6 +97,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [IBM LLM Routers](https://research.ibm.com/blog/LLM-routers) - IBM's research on training routers.
 - [LLM Routing Explained](https://towardsdatascience.com/llm-routing-intuitively-and-exhaustively-explained-5b0789fe27aa/) - Intuitive guide.
 - [vLLM Semantic Router paper](https://arxiv.org/abs/2603.04444) - Signal-driven decision routing for Mixture-of-Modality models; composable signal orchestration across heuristic and neural classifiers.
+- [RouteProfile paper](https://arxiv.org/abs/2605.00180) - Structured profiles consistently outperform flat ones; query-level signals more reliable than domain-level for routing generalization.
 
 ## Prompt Compression
 
@@ -118,6 +121,7 @@ Reduce prompt size while preserving information quality.
 - [SCOPE](https://arxiv.org/abs/2508.15813) - Training-free generative rewriting.
 - [Prompt Compression Survey](https://arxiv.org/abs/2410.12388) - Comprehensive survey of all techniques.
 - [CompactPrompt](https://arxiv.org/abs/2510.18043) - Unified prompt + data compression pipeline.
+- [Telegraph English](https://arxiv.org/abs/2605.04426) - Symbol-rich structured rewriting; 50% token reduction at 99.1% fact accuracy, outperforms LLMLingua-2 at matched compression ratio.
 - [Efficient Prompting Survey](https://arxiv.org/abs/2404.01077) - Survey of efficient prompting methods.
 
 ### Guides
@@ -251,6 +255,13 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 - [Anthropic](https://docs.anthropic.com/en/docs/about-claude/pricing) | [OpenAI](https://openai.com/api/pricing/) | [Google Gemini](https://ai.google.dev/gemini-api/docs/pricing) | [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing) | [Mistral](https://mistral.ai/pricing)
 
+### Recent Provider Changes (May 2026)
+
+- **DeepSeek V4-Pro** — permanent 75% price cut effective May 31: input $0.435/M (was $1.74/M), output $0.87/M (was $3.48/M). [Source](https://thenextweb.com/news/deepseek-v4-pro-price-cut-75-percent)
+- **Google Gemini 3.5 Flash** — launched at I/O 2026 (May 19): $1.50/$9/M tokens, 1M context, 4× faster than comparable frontier models, outperforms Gemini 3.1 Pro on coding at ~40% lower cost. [Announcement](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/)
+- **Google Gemini 2.0 Flash / 2.0 Flash-Lite** — deprecating June 1, 2026.
+- **OpenAI o3 series** — 80% price reduction applied in early 2026; o4-mini now at $0.55/$2.20 per 1M tokens.
+
 ## Prompt Engineering for Efficiency
 
 ### Official Guides
@@ -309,6 +320,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SCOPE](https://arxiv.org/abs/2508.15813) | 2025 | Training-free generative rewriting |
 | [Dynamic Compressing](https://arxiv.org/abs/2504.11004) | 2025 | MDP-based adaptive token removal |
 | [Empirical Study](https://arxiv.org/abs/2505.00019) | 2025 | Benchmarks 6 methods across 13 datasets |
+| [Telegraph English](https://arxiv.org/abs/2605.04426) | 2026 | Symbol-rich rewriting; 50% reduction, 99.1% accuracy; beats LLMLingua-2 at matched ratio |
 
 ### Model Routing & Cascading
 
@@ -320,6 +332,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Unified Routing + Cascading](https://arxiv.org/abs/2410.10347) | 2024 | +14% over individual strategies |
 | [Dynamic Routing Survey](https://arxiv.org/abs/2603.04445) | 2026 | Comprehensive survey |
 | [Pay for Hints](https://arxiv.org/abs/2601.22132) | 2026 | Small model gets hints, not full answers |
+| [RouteProfile](https://arxiv.org/abs/2605.00180) | 2026 | Structured profiles > flat; query-level signals most reliable; generalization framework |
 
 ### Context & Inference
 
@@ -350,6 +363,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [KV-Fold](https://arxiv.org/abs/2605.12471) | 2026 | Training-free long-context inference; treats KV cache as left-fold accumulator over chunks |
 
 ### Prompt Optimization
 
@@ -360,6 +374,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Chain of Draft](https://arxiv.org/abs/2502.18600) | 2025 | Only 7.6% of CoT tokens used |
 | [Semantic Compression](https://arxiv.org/abs/2304.12512) | 2023 | Semantic compression with LLMs |
 | [Tokenomics](https://arxiv.org/abs/2601.14470) | 2026 | Code review = 59.4% of tokens in agentic SE; input context dominates at 53.9% |
+| [IAPO](https://arxiv.org/abs/2602.19049) | 2026 | Information-aware policy optimization; 36% reasoning length reduction on Qwen2.5-7B |
 
 ## Community Resources
 
