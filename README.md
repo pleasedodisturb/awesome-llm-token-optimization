@@ -233,6 +233,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
 - [LangSmith Cost Tracking](https://docs.langchain.com/langsmith/cost-tracking) - Automatic recording with dashboards.
 - [LlamaIndex Cost Analysis](https://docs.llamaindex.ai/en/stable/understanding/evaluating/cost_analysis/) - Estimate costs before calls.
+- [traceAI](https://github.com/future-agi/traceAI) - Open-source OpenTelemetry-native tracing for LLM and agent apps with 50+ framework integrations, including span-level token and cost capture. ![Stars](https://img.shields.io/github/stars/future-agi/traceAI)
 
 ## Pricing Comparison
 
