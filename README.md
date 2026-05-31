@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens. Since Feb 5, 2026: caches are workspace-scoped, not org-scoped — important if you share an organization across teams.
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
@@ -82,6 +82,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
+- [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - Open-source routing library with 16+ router implementations across single-round, multi-round, agentic, and personalized categories. Unified CLI and ComfyUI interface. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
 
 ### Curated Lists
 
@@ -169,7 +170,7 @@ Server-side optimizations for inference efficiency.
 
 ### Inference Engines
 
-- [vLLM](https://github.com/vllm-project/vllm) - PagedAttention, high-throughput inference. ![Stars](https://img.shields.io/github/stars/vllm-project/vllm)
+- [vLLM](https://github.com/vllm-project/vllm) - PagedAttention, high-throughput inference. v0.20.2 (May 2026): Model Runner V2 delivers up to 56% higher throughput on GB200. ![Stars](https://img.shields.io/github/stars/vllm-project/vllm)
 - [SGLang](https://github.com/sgl-project/sglang) - RadixAttention for automatic KV cache reuse. ![Stars](https://img.shields.io/github/stars/sgl-project/sglang)
 - [GPUStack](https://github.com/gpustack/gpustack) - GPU cluster manager for vLLM/SGLang. ![Stars](https://img.shields.io/github/stars/gpustack/gpustack)
 
@@ -225,7 +226,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 - [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM observability + cost tracking. [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
 - [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). **Note: [Acquired by Mintlify](https://www.helicone.ai/blog/joining-mintlify) in March 2026; maintenance mode only.** ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
-- [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy with [spend tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing). ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
+- [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy with [spend tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing). **Security**: v1.82.7–1.82.8 were backdoored in a [March 2026 supply chain incident](https://thehackernews.com/2026/03/teampcp-backdoors-litellm-versions.html); use v1.83.0+. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [tokencost](https://github.com/AgentOps-AI/tokencost) - USD cost estimates for 400+ LLMs. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/tokencost)
 - [AgentOps](https://github.com/AgentOps-AI/agentops) - Agent monitoring with LLM cost tracking. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/agentops)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
@@ -250,6 +251,15 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 ### Provider Pricing Pages
 
 - [Anthropic](https://docs.anthropic.com/en/docs/about-claude/pricing) | [OpenAI](https://openai.com/api/pricing/) | [Google Gemini](https://ai.google.dev/gemini-api/docs/pricing) | [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing) | [Mistral](https://mistral.ai/pricing)
+
+### Recent Notable Changes (May 2026)
+
+- **Claude Opus 4.8** (May 28, 2026) – Anthropic's new most-capable model with dynamic parallel workflows. Note: Opus 4.7's tokenizer encodes up to 35% more tokens per input; re-benchmark cached prefix sizes when upgrading.
+- **GPT-5.5** – OpenAI's default flagship at $5/$30 per 1M tokens; 50% Batch discount brings to $2.50/$15.
+- **Gemini 3.5 Flash** (May 19, 2026) – Google's frontier-speed model at $1.50/$9 per 1M tokens; outperforms Gemini 3.1 Pro on coding at ~25% lower cost.
+- **DeepSeek V4 Flash** – `deepseek-chat`/`deepseek-reasoner` deprecated; use `deepseek-v4-flash` at $0.14 input / $0.28 output per 1M tokens (cache-miss rate). V4 Pro: price reduced to 1/4 original after promotion ends May 31, 2026.
+- **Anthropic programmatic billing** (effective June 15, 2026) – CI/CD pipelines, Agent SDK, and `claude -p` cron jobs move off subscriptions onto standard API prices; [audit and budget your pipelines now](https://codersera.com/blog/anthropic-june-2026-billing-change-claude-code/).
+- **Google free tier** (April 1, 2026) – Gemini 3.1 Pro and 3 Pro are now paid-only; Flash models remain free with reduced daily quotas.
 
 ## Prompt Engineering for Efficiency
 
@@ -309,6 +319,9 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SCOPE](https://arxiv.org/abs/2508.15813) | 2025 | Training-free generative rewriting |
 | [Dynamic Compressing](https://arxiv.org/abs/2504.11004) | 2025 | MDP-based adaptive token removal |
 | [Empirical Study](https://arxiv.org/abs/2505.00019) | 2025 | Benchmarks 6 methods across 13 datasets |
+| [Telegraph English](https://arxiv.org/abs/2605.04426) | 2026 | Symbol-rich rewriting; 99.1% fact accuracy at ~50% token reduction |
+| [Compression in the Wild](https://arxiv.org/abs/2604.02985) | 2026 | Production benchmarks; 18% end-to-end speed-up when well-matched; over-compression backfires |
+| [Compression RCT](https://arxiv.org/abs/2603.23525) | 2026 | Randomized trial: moderate compression −27.9% cost; aggressive compression +1.8% cost |
 
 ### Model Routing & Cascading
 
@@ -350,6 +363,10 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [KV-Fold](https://arxiv.org/abs/2605.12471) | 2026 | Training-free recurrence protocol; 100% exact-match retrieval on needle benchmarks 16K–128K |
+| [ArborKV](https://arxiv.org/abs/2605.22106) | 2026 | Structure-aware eviction for Tree-of-Thoughts reasoning; limits memory growth during search |
+| [Meta-Soft](https://arxiv.org/abs/2605.22337) | 2026 | Composable meta-tokens for context-preserving KV cache compression |
+| [Speculative Decoding: Illusion?](https://arxiv.org/abs/2601.11580) | 2026 | First systematic production study on vLLM; SD gains vary widely by workload and batch size |
 
 ### Prompt Optimization
 
