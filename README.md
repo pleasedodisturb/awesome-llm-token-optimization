@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL, min 1,024 tokens. **Feb 2026:** caches now isolated per workspace (not org-level).
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
@@ -77,10 +77,11 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 
 - [RouteLLM](https://github.com/lm-sys/RouteLLM) - Open-source LLM router by LMSYS. Trains routers from preference data; 2x+ cost reduction. ![Stars](https://img.shields.io/github/stars/lm-sys/RouteLLM)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
-- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
+- [NotDiamond](https://www.notdiamond.ai/) - Per-query best-model selection. **Note:** [notdiamond-python SDK archived Dec 2025](https://github.com/Not-Diamond/notdiamond-python); service remains active at notdiamond.ai.
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
+- [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - Open-source routing library with 16+ routers (single-round, multi-round, agentic, personalized); RouteProfile framework for custom profiles. `pip install llmrouter-lib`. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
 
 ### Curated Lists
@@ -103,7 +104,7 @@ Reduce prompt size while preserving information quality.
 ### Tools
 
 - [LLMLingua](https://github.com/microsoft/LLMLingua) - Up to 20x compression. Coarse-to-fine iterative method. Integrates with LangChain/LlamaIndex. ![Stars](https://img.shields.io/github/stars/microsoft/LLMLingua)
-- [Headroom](https://github.com/chopratejas/headroom) - Routes JSON/code/text to specialized compressors.
+- [Headroom](https://github.com/chopratejas/headroom) - Context compression layer for AI agents: library, proxy, and MCP server. 60-95% token reduction; type-aware (JSON, code, RAG chunks). Compatible with Claude Code, Cursor, Aider. ![Stars](https://img.shields.io/github/stars/chopratejas/headroom)
 - [code2prompt](https://github.com/mufeedvh/code2prompt) - Codebase to LLM prompt with token counting. ![Stars](https://img.shields.io/github/stars/mufeedvh/code2prompt)
 
 ### Research
@@ -116,6 +117,8 @@ Reduce prompt size while preserving information quality.
 - [500xCompressor](https://arxiv.org/abs/2408.03094) - Extreme: contexts down to a single token (6-480x ratios).
 - [LoPace](https://arxiv.org/abs/2602.13266) - Lossless; 72.2% savings with 100% reconstruction.
 - [SCOPE](https://arxiv.org/abs/2508.15813) - Training-free generative rewriting.
+- [Telegraph English](https://arxiv.org/abs/2605.04426) - Symbolic rewriting into structured dialect; 99.1% accuracy at 50% token reduction on LongBench-v2 (May 2026).
+- [Prompt Compression in the Wild](https://arxiv.org/abs/2604.02985) - First large-scale study of latency vs. quality tradeoff for prompt compression in production; 30,000 queries across 3 GPU classes (Apr 2026).
 - [Prompt Compression Survey](https://arxiv.org/abs/2410.12388) - Comprehensive survey of all techniques.
 - [CompactPrompt](https://arxiv.org/abs/2510.18043) - Unified prompt + data compression pipeline.
 - [Efficient Prompting Survey](https://arxiv.org/abs/2404.01077) - Survey of efficient prompting methods.
@@ -228,6 +231,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy with [spend tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing). ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [tokencost](https://github.com/AgentOps-AI/tokencost) - USD cost estimates for 400+ LLMs. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/tokencost)
 - [AgentOps](https://github.com/AgentOps-AI/agentops) - Agent monitoring with LLM cost tracking. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/agentops)
+- [Portkey AI Gateway](https://github.com/Portkey-AI/gateway) - Open-source AI gateway (Apache 2.0); unified API for 1,600+ LLMs with cost tracking, routing, and guardrails. ![Stars](https://img.shields.io/github/stars/Portkey-AI/gateway)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
 - [Anthropic Token Counter](https://docs.anthropic.com/en/api/messages-count-tokens) - Free pre-flight token counting endpoint.
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
@@ -309,6 +313,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SCOPE](https://arxiv.org/abs/2508.15813) | 2025 | Training-free generative rewriting |
 | [Dynamic Compressing](https://arxiv.org/abs/2504.11004) | 2025 | MDP-based adaptive token removal |
 | [Empirical Study](https://arxiv.org/abs/2505.00019) | 2025 | Benchmarks 6 methods across 13 datasets |
+| [Telegraph English](https://arxiv.org/abs/2605.04426) | 2026 | Symbolic rewriting; 99.1% accuracy at 50% token reduction |
+| [Prompt Compression in the Wild](https://arxiv.org/abs/2604.02985) | 2026 | First large-scale production latency vs. quality tradeoff study |
 
 ### Model Routing & Cascading
 
@@ -350,6 +356,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [LongSpec](https://arxiv.org/abs/2502.17421) | 2025 | Constant memory speculative decoding |
 | [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026) |
 | [IceCache](https://arxiv.org/abs/2604.10539) | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget |
+| [Make Each Token Count](https://arxiv.org/abs/2605.09649) | 2026 | Learnable retention gates for KV eviction improve long-context accuracy |
+| [Meta-Soft](https://arxiv.org/abs/2605.22337) | 2026 | Composable meta-tokens for context-preserving KV cache compression |
 
 ### Prompt Optimization
 
