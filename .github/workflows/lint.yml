@@ -1,0 +1,24 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  awesome-lint:
+    name: awesome-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Keep README.md formatted (aligned tables) and Awesome-compliant.
+      - name: Check formatting
+        run: npx --yes prettier@latest --check "README.md"
+      - name: awesome-lint
+        run: npx --yes awesome-lint
