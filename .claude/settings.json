@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v node >/dev/null 2>&1 || echo 'node not found — install Node 20+ to run awesome-lint'; (npx --yes awesome-lint --help >/dev/null 2>&1 &) ; echo 'This repo is an Awesome list. Before committing or opening a PR: run `npx prettier --write README.md` then `npx awesome-lint` and ensure 0 errors. See CLAUDE.md for the maintenance + verification rules.'"
+          }
+        ]
+      }
+    ]
+  }
+}
