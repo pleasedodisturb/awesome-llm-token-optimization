@@ -113,6 +113,7 @@ Reduce prompt size while preserving information quality.
 - [code2prompt](https://github.com/mufeedvh/code2prompt) - Codebase to LLM prompt with token counting. ![Stars](https://img.shields.io/github/stars/mufeedvh/code2prompt)
 - [RTK](https://github.com/rtk-ai/rtk) - Single-binary Rust CLI proxy that compresses dev-command output 60-90% before it reaches a coding agent's context. Works with Claude Code, Cursor, Copilot, Gemini CLI. ![Stars](https://img.shields.io/github/stars/rtk-ai/rtk)
 - [TOON](https://github.com/toon-format/toon) - Token-Oriented Object Notation: a compact, schema-aware encoding for passing JSON-like data to LLMs; 30-60% fewer tokens than JSON on uniform arrays of objects. ![Stars](https://img.shields.io/github/stars/toon-format/toon)
+- [llmtrim](https://github.com/fkiene/llmtrim) - Quality-gated MITM proxy and MCP server that compresses prompts, tool outputs, and replies before they reach the LLM, reverting any step that does not save (measured -31% input / -74% output across live A/B cases). Rust CLI plus library bindings and a WASM/JS package. ![Stars](https://img.shields.io/github/stars/fkiene/llmtrim)
 
 ### Research
 
