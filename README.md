@@ -219,8 +219,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ## Cost Tracking Tools
 
-- [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM observability + cost tracking. [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
-- [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
+- [Langfuse](https://github.com/langfuse/langfuse) - Open-source LLM observability + cost tracking. [Cost tracking docs](https://langfuse.com/docs/observability/features/token-and-cost-tracking). **Acquired by ClickHouse January 2026; still actively developed, MIT-licensed.** ![Stars](https://img.shields.io/github/stars/langfuse/langfuse)
+- [Helicone](https://github.com/Helicone/helicone) - LLM observability, 300+ models, SOC 2. [Cost tracking cookbook](https://docs.helicone.ai/guides/cookbooks/cost-tracking). **Note: acquired by Mintlify March 2026; in maintenance mode (no new features shipping).** ![Stars](https://img.shields.io/github/stars/Helicone/helicone)
 - [LiteLLM Spend Tracking](https://docs.litellm.ai/docs/proxy/cost_tracking) - Per-key/team spend tracking and [budget routing](https://docs.litellm.ai/docs/proxy/provider_budget_routing) for the LiteLLM proxy across 100+ LLMs. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [tokencost](https://github.com/AgentOps-AI/tokencost) - USD cost estimates for 400+ LLMs. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/tokencost)
 - [AgentOps](https://github.com/AgentOps-AI/agentops) - Agent monitoring with LLM cost tracking. ![Stars](https://img.shields.io/github/stars/AgentOps-AI/agentops)
@@ -257,14 +257,17 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Notable Recent Pricing (June 2026)
 
-| Model                 | Input /MTok | Output /MTok | Notes                                                  |
-| --------------------- | ----------- | ------------ | ------------------------------------------------------ |
-| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026) |
-| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                         |
-| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                   |
-| DeepSeek V4 Pro       | $0.435      | $0.87        | Replaces `deepseek-reasoner`; 1M context               |
-| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window               |
-| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                          |
+| Model                 | Input /MTok | Output /MTok | Notes                                                                                                             |
+| --------------------- | ----------- | ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5        | $10.00      | $50.00       | Launched June 9; access suspended June 12 (US export control directive); Anthropic targeting ~June 22 restoration |
+| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                                                                                    |
+| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount ($0.50/M cached)                                           |
+| GPT-5.4               | $2.50       | $15.00       | OpenAI mid-tier; exactly half the cost of GPT-5.5; 50% Batch API discount                                         |
+| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                                                                              |
+| DeepSeek V4 Pro       | $0.435      | $0.87        | Replaces `deepseek-reasoner`; 1M context                                                                          |
+| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                          |
+| Gemini 3.1 Pro        | $2.00       | $12.00       | Released Feb 2026; 1-2M context; 10% cache rate; 50% batch discount                                               |
+| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                     |
 
 ## Prompt Engineering for Efficiency
 
@@ -388,20 +391,22 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [SmallKV](https://arxiv.org/abs/2508.02751)                          | 2025 | Small-model-assisted eviction compensation; 1.75-2.56x higher throughput                                       |
 | [Semantic Caching (Microsoft)](https://arxiv.org/abs/2508.07675)     | 2025 | Optimal semantic cache is NP-hard; Reverse Greedy + bandit learning                                            |
 | [SpecFormer](https://arxiv.org/abs/2511.20340)                       | 2025 | Lossless non-autoregressive drafting that holds up under large-batch serving                                   |
+| [DDTree (Block Diffusion)](https://arxiv.org/abs/2604.12989)         | 2026 | Block diffusion draft tree for speculative decoding; outperforms EAGLE-3 at matched node budget                |
 
 ### Prompt Optimization
 
-| Paper                                                               | Year | Key Result                                                                    |
-| ------------------------------------------------------------------- | ---- | ----------------------------------------------------------------------------- |
-| [APE (Automatic Prompt Engineer)](https://arxiv.org/abs/2211.01910) | 2022 | LLMs generate optimal prompts                                                 |
-| [Concise Chain-of-Thought](https://arxiv.org/abs/2401.05618)        | 2024 | 48.7% shorter, negligible quality loss                                        |
-| [Chain of Draft](https://arxiv.org/abs/2502.18600)                  | 2025 | Only 7.6% of CoT tokens used                                                  |
-| [Semantic Compression](https://arxiv.org/abs/2304.12512)            | 2023 | Semantic compression with LLMs                                                |
-| [Tokenomics](https://arxiv.org/abs/2601.14470)                      | 2026 | Code review = 59.4% of tokens in agentic SE; input context dominates at 53.9% |
-| [IAPO](https://arxiv.org/abs/2602.19049)                            | 2026 | Information-aware policy optimization; 36% reasoning-length reduction         |
-| [SelfBudgeter](https://arxiv.org/abs/2505.11274)                    | 2025 | Self-estimated reasoning budget via budget-guided GRPO; ~61% length cut       |
-| [Step Pruner](https://arxiv.org/abs/2510.03805)                     | 2025 | Step-aware RL reward; 33% of tokens at equal accuracy                         |
-| [BudgetThinker](https://arxiv.org/abs/2508.17196)                   | 2025 | Budget-signaling control tokens for precise reasoning-length control          |
+| Paper                                                               | Year | Key Result                                                                                                   |
+| ------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------ |
+| [APE (Automatic Prompt Engineer)](https://arxiv.org/abs/2211.01910) | 2022 | LLMs generate optimal prompts                                                                                |
+| [Concise Chain-of-Thought](https://arxiv.org/abs/2401.05618)        | 2024 | 48.7% shorter, negligible quality loss                                                                       |
+| [Chain of Draft](https://arxiv.org/abs/2502.18600)                  | 2025 | Only 7.6% of CoT tokens used                                                                                 |
+| [Semantic Compression](https://arxiv.org/abs/2304.12512)            | 2023 | Semantic compression with LLMs                                                                               |
+| [Tokenomics](https://arxiv.org/abs/2601.14470)                      | 2026 | Code review = 59.4% of tokens in agentic SE; input context dominates at 53.9%                                |
+| [IAPO](https://arxiv.org/abs/2602.19049)                            | 2026 | Information-aware policy optimization; 36% reasoning-length reduction                                        |
+| [SelfBudgeter](https://arxiv.org/abs/2505.11274)                    | 2025 | Self-estimated reasoning budget via budget-guided GRPO; ~61% length cut                                      |
+| [Step Pruner](https://arxiv.org/abs/2510.03805)                     | 2025 | Step-aware RL reward; 33% of tokens at equal accuracy                                                        |
+| [BudgetThinker](https://arxiv.org/abs/2508.17196)                   | 2025 | Budget-signaling control tokens for precise reasoning-length control                                         |
+| [CROP](https://arxiv.org/abs/2604.14214)                            | 2026 | 80.6% output token reduction via regularized length feedback alongside accuracy optimization (Google/Purdue) |
 
 ## Community Resources
 
