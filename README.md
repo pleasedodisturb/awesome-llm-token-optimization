@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Minimum cacheable prefix is model-dependent: 4,096 tokens on Opus 4.x/Haiku 4.5, 2,048 on Fable 5/Sonnet 4.6.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Automatic caching (Feb 2026) via a single request-level flag. Minimum cacheable prefix: 4,096 tokens on Opus 4.6/Haiku 4.5, 2,048 on Sonnet 4.6, 1,024 on Opus 4.8.
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
@@ -114,6 +114,7 @@ Reduce prompt size while preserving information quality.
 - [RTK](https://github.com/rtk-ai/rtk) - Single-binary Rust CLI proxy that compresses dev-command output 60-90% before it reaches a coding agent's context. Works with Claude Code, Cursor, Copilot, Gemini CLI. ![Stars](https://img.shields.io/github/stars/rtk-ai/rtk)
 - [TOON](https://github.com/toon-format/toon) - Token-Oriented Object Notation: a compact, schema-aware encoding for passing JSON-like data to LLMs; 30-60% fewer tokens than JSON on uniform arrays of objects. ![Stars](https://img.shields.io/github/stars/toon-format/toon)
 - [llmtrim](https://github.com/fkiene/llmtrim) - Quality-gated local proxy and MCP server that compresses prompts, tool outputs, and replies before they reach the LLM, reverting any step that doesn't save tokens (project-reported -31% input / -74% output across 112 A/B cases). Rust CLI plus multi-language library bindings and a WebAssembly/JS package. ![Stars](https://img.shields.io/github/stars/fkiene/llmtrim)
+- [lean-ctx](https://github.com/yvgude/lean-ctx) - Rust binary context intelligence layer for AI coding agents; 60-90% fewer tokens via shell-output compression and 10 cached-read modes; MCP server with 76 tools and cross-session memory. Works with Claude Code, Cursor, Copilot, Windsurf, Gemini CLI, and 30+ others. ![Stars](https://img.shields.io/github/stars/yvgude/lean-ctx)
 
 ### Research
 
@@ -231,6 +232,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Future AGI traceAI](https://github.com/future-agi/traceAI) - OpenTelemetry-based AI tracing capturing per-call tokens, cost, and latency across 35+ frameworks. ![Stars](https://img.shields.io/github/stars/future-agi/traceAI)
 - [ccusage](https://github.com/ryoppippi/ccusage) - Fast local CLI reporting tokens and cost across 14+ coding agents (Claude Code, Codex, Gemini CLI, Copilot); offline, no upload. ![Stars](https://img.shields.io/github/stars/ryoppippi/ccusage)
 - [OpenLLMetry](https://github.com/traceloop/openllmetry) - OpenTelemetry-based GenAI observability instrumenting LLM and vector-DB calls with per-call token and latency telemetry. ![Stars](https://img.shields.io/github/stars/traceloop/openllmetry)
+- [MLflow](https://github.com/mlflow/mlflow) - Open-source AI/ML platform with comprehensive LLM cost tracking in MLflow 3.x: per-span token and cost recording, cached-token attribution for Anthropic and OpenAI, agent trace replay, and budget alerts. ![Stars](https://img.shields.io/github/stars/mlflow/mlflow)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
 - [Anthropic Token Counter](https://docs.anthropic.com/en/api/messages-count-tokens) - Free pre-flight token counting endpoint.
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
@@ -260,16 +262,16 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Notable Recent Pricing (June 2026)
 
-| Model                 | Input /MTok | Output /MTok | Notes                                                  |
-| --------------------- | ----------- | ------------ | ------------------------------------------------------ |
-| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026) |
-| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                         |
-| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount |
-| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount       |
-| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                   |
-| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes              |
-| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window               |
-| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                          |
+| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                      |
+| --------------------- | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). **Access suspended June 12 via US export-control directive; restoration pending.** |
+| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                                                                                                             |
+| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount                                                                                     |
+| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount                                                                                           |
+| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                                                                                                       |
+| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes                                                                                                  |
+| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                                                   |
+| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                              |
 
 ## Prompt Engineering for Efficiency
 
