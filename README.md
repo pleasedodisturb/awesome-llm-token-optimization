@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Automatic caching (Feb 2026) via a single request-level flag. Minimum cacheable prefix: 4,096 tokens on Opus 4.6/Haiku 4.5, 2,048 on Sonnet 4.6, 1,024 on Opus 4.8.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Minimum cacheable prefix: 4,096 tokens on Opus 4.6/Haiku 4.5, 1,024 on Sonnet 4.6/Opus 4.8.
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
@@ -234,7 +234,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Future AGI traceAI](https://github.com/future-agi/traceAI) - OpenTelemetry-based AI tracing capturing per-call tokens, cost, and latency across 35+ frameworks. ![Stars](https://img.shields.io/github/stars/future-agi/traceAI)
 - [ccusage](https://github.com/ryoppippi/ccusage) - Fast local CLI reporting tokens and cost across 14+ coding agents (Claude Code, Codex, Gemini CLI, Copilot); offline, no upload. ![Stars](https://img.shields.io/github/stars/ryoppippi/ccusage)
 - [OpenLLMetry](https://github.com/traceloop/openllmetry) - OpenTelemetry-based GenAI observability instrumenting LLM and vector-DB calls with per-call token and latency telemetry. ![Stars](https://img.shields.io/github/stars/traceloop/openllmetry)
-- [MLflow](https://github.com/mlflow/mlflow) - Open-source AI/ML platform with comprehensive LLM cost tracking in MLflow 3.x: per-span token and cost recording, cached-token attribution for Anthropic and OpenAI, agent trace replay, and budget alerts. ![Stars](https://img.shields.io/github/stars/mlflow/mlflow)
+- [MLflow](https://github.com/mlflow/mlflow) - Open-source AI/ML platform with GenAI observability in MLflow 3.x: LLM call tracing with per-span token tracking, prompt optimization tooling, and AI Gateway integration for cost control. ![Stars](https://img.shields.io/github/stars/mlflow/mlflow)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
 - [Anthropic Token Counter](https://docs.anthropic.com/en/api/messages-count-tokens) - Free pre-flight token counting endpoint.
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
