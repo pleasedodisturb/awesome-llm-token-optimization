@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Minimum cacheable prefix is model-dependent: 4,096 tokens on Opus 4.x/Haiku 4.5, 2,048 on Fable 5/Sonnet 4.6.
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount, 5min/1hr TTL. Minimum cacheable prefix: 4,096 tokens on Opus 4.6/Haiku 4.5, 1,024 on Sonnet 4.6/Opus 4.8.
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
@@ -85,9 +85,9 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
 - [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Note: the Python SDK was archived Dec 2025 (read-only); the [notdiamond.ai](https://www.notdiamond.ai/) service remains active.** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
-- [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.2 "Athena" (March 2026). ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
+- [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.3 "Themis" (June 2026); SAAR adds session-aware model selection cutting model switches 79% in multi-agent deployments. ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
 - [LLMRouter](https://github.com/ulab-uiuc/LLMRouter) - Open-source routing library with 16+ routers (single-round, multi-turn, agentic, personalized) and a unified CLI. ![Stars](https://img.shields.io/github/stars/ulab-uiuc/LLMRouter)
-- [Portkey AI Gateway](https://github.com/Portkey-AI/gateway) - Open-source AI gateway routing to 1,600+ LLMs with guardrails, caching, and load balancing. ![Stars](https://img.shields.io/github/stars/Portkey-AI/gateway)
+- [Portkey AI Gateway](https://github.com/Portkey-AI/gateway) - Open-source AI gateway routing to 1,600+ LLMs with guardrails, caching, and load balancing. Acquired by Palo Alto Networks (May 2026); gateway remains open-source under Apache 2.0. ![Stars](https://img.shields.io/github/stars/Portkey-AI/gateway)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
 
@@ -99,6 +99,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 
 - [RouteLLM paper](https://www.lmsys.org/blog/2024-07-01-routellm/) - LMSYS blog on cost-quality tradeoffs.
 - [IBM LLM Routers](https://research.ibm.com/blog/LLM-routers) - IBM's research on training routers.
+- [vLLM Session-Aware Agentic Routing (SAAR)](https://vllm.ai/blog/2026-06-02-session-aware-agentic-routing) - Router-owned session memory with hard locks around tool loops cuts model switches 79% and estimated cost 78.7% in multi-agent deployments.
 - [LLM Routing Explained](https://towardsdatascience.com/llm-routing-intuitively-and-exhaustively-explained-5b0789fe27aa/) - Intuitive guide.
 - [vLLM Semantic Router paper](https://arxiv.org/abs/2603.04444) - Signal-driven decision routing for Mixture-of-Modality models; composable signal orchestration across heuristic and neural classifiers.
 
@@ -114,6 +115,7 @@ Reduce prompt size while preserving information quality.
 - [RTK](https://github.com/rtk-ai/rtk) - Single-binary Rust CLI proxy that compresses dev-command output 60-90% before it reaches a coding agent's context. Works with Claude Code, Cursor, Copilot, Gemini CLI. ![Stars](https://img.shields.io/github/stars/rtk-ai/rtk)
 - [TOON](https://github.com/toon-format/toon) - Token-Oriented Object Notation: a compact, schema-aware encoding for passing JSON-like data to LLMs; 30-60% fewer tokens than JSON on uniform arrays of objects. ![Stars](https://img.shields.io/github/stars/toon-format/toon)
 - [llmtrim](https://github.com/fkiene/llmtrim) - Quality-gated local proxy and MCP server that compresses prompts, tool outputs, and replies before they reach the LLM, reverting any step that doesn't save tokens (project-reported -31% input / -74% output across 112 A/B cases). Rust CLI plus multi-language library bindings and a WebAssembly/JS package. ![Stars](https://img.shields.io/github/stars/fkiene/llmtrim)
+- [lean-ctx](https://github.com/yvgude/lean-ctx) - Rust binary context intelligence layer for AI coding agents; 60-90% fewer tokens via shell-output compression and 10 cached-read modes; MCP server with 76 tools and cross-session memory. Works with Claude Code, Cursor, Copilot, Windsurf, Gemini CLI, and 30+ others. ![Stars](https://img.shields.io/github/stars/yvgude/lean-ctx)
 
 ### Research
 
@@ -183,6 +185,7 @@ Server-side optimizations for inference efficiency.
 - [LMCache](https://github.com/LMCache/LMCache) - KV cache layer for vLLM/SGLang; offloads and reuses caches across engines (CPU/disk/S3) to cut TTFT for long-context, multi-turn, and RAG. ![Stars](https://img.shields.io/github/stars/LMCache/LMCache)
 - [kvcached](https://github.com/ovg-project/kvcached) - Virtualized elastic KV cache decoupling virtual/physical GPU memory for dynamic GPU sharing; plugs into vLLM/SGLang. ![Stars](https://img.shields.io/github/stars/ovg-project/kvcached)
 - [KVzip](https://github.com/snu-mllab/KVzip) - Query-agnostic KV cache eviction via context reconstruction (NeurIPS 2025 Oral); 3-4x memory reduction, 2x lower latency. ![Stars](https://img.shields.io/github/stars/snu-mllab/KVzip)
+- [DeepSpec](https://github.com/deepseek-ai/DeepSpec) - DeepSeek's open-source speculative decoding stack powering DSpark; 60-85% faster on V4-Flash, 57-78% on V4-Pro; outperforms Eagle-3. MIT license. ![Stars](https://img.shields.io/github/stars/deepseek-ai/DeepSpec)
 
 ### Research
 
@@ -231,6 +234,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Future AGI traceAI](https://github.com/future-agi/traceAI) - OpenTelemetry-based AI tracing capturing per-call tokens, cost, and latency across 35+ frameworks. ![Stars](https://img.shields.io/github/stars/future-agi/traceAI)
 - [ccusage](https://github.com/ryoppippi/ccusage) - Fast local CLI reporting tokens and cost across 14+ coding agents (Claude Code, Codex, Gemini CLI, Copilot); offline, no upload. ![Stars](https://img.shields.io/github/stars/ryoppippi/ccusage)
 - [OpenLLMetry](https://github.com/traceloop/openllmetry) - OpenTelemetry-based GenAI observability instrumenting LLM and vector-DB calls with per-call token and latency telemetry. ![Stars](https://img.shields.io/github/stars/traceloop/openllmetry)
+- [MLflow](https://github.com/mlflow/mlflow) - Open-source AI/ML platform with GenAI observability in MLflow 3.x: LLM call tracing with per-span token tracking, prompt optimization tooling, and AI Gateway integration for cost control. ![Stars](https://img.shields.io/github/stars/mlflow/mlflow)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
 - [Anthropic Token Counter](https://docs.anthropic.com/en/api/messages-count-tokens) - Free pre-flight token counting endpoint.
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
@@ -260,16 +264,17 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Notable Recent Pricing (June 2026)
 
-| Model                 | Input /MTok | Output /MTok | Notes                                                  |
-| --------------------- | ----------- | ------------ | ------------------------------------------------------ |
-| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026) |
-| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                         |
-| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount |
-| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount       |
-| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                   |
-| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes              |
-| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window               |
-| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                          |
+| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                      |
+| --------------------- | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). **Access suspended June 12 via US export-control directive; restoration pending.** |
+| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                                                                                                             |
+| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount                                                                                     |
+| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount                                                                                           |
+| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                                                                                                       |
+| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes                                                                                                  |
+| Gemini 3.1 Pro        | $2.00       | $12.00       | Preview since Feb 2026; ≤200K context; doubles to $4/$18 above 200K tokens                                                                 |
+| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                                                   |
+| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                              |
 
 ## Prompt Engineering for Efficiency
 
