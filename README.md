@@ -137,6 +137,8 @@ Rule-based lossless distillation achieves **3-4:1 compression** without any mode
 
 **Strip** prose transitions, hedging, rhetoric, and common knowledge. **Preserve** numbers, entities, decisions, constraints, and risks. **Transform** prose into dense bullets and verbose text into semicolon-joined clauses. **Split** into 3,000-5,000 token self-contained sections that load independently.
 
+
+- [SuperCompress](https://github.com/arjunkshah/supercompress) - Learned prompt compression with a ~5K-parameter CPU policy. Cuts ~65% of tokens before inference with 100% oracle recall. ~60ms latency, no GPU needed. `pip install supercompress`.
 ## Context Window Management
 
 ### Key Research
@@ -424,6 +426,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Extra-CoT](https://arxiv.org/abs/2602.08324)                       | 2026 | Mixed-ratio SFT + RL for extreme-ratio CoT compression; ~73% token cut on MATH-500 with +0.6% accuracy |
 | [CROP](https://arxiv.org/abs/2604.14214)                            | 2026 | Length-regularized automatic prompt optimization; up to ~80.6% output-token reduction (Google/Purdue)  |
 
+
+- [SuperCompress](https://github.com/arjunkshah/supercompress) - Learned prompt compression with a ~5K-parameter CPU policy. Cuts ~65% of tokens before inference with 100% oracle recall. ~60ms latency, no GPU needed. `pip install supercompress`.
 ## Community Resources
 
 ### Related Projects
