@@ -27,14 +27,14 @@ Building with LLMs is expensive. An agent processing 10 reasoning steps can cons
 
 The highest-impact strategies ranked by effort-to-savings ratio:
 
-| Strategy                 | Savings              | Effort                   | Link                            |
-| ------------------------ | -------------------- | ------------------------ | ------------------------------- |
-| Prompt caching           | 90% input tokens     | Add cache headers        | Prompt Caching                  |
+| Strategy                 | Savings              | Effort                   | Link                              |
+| ------------------------ | -------------------- | ------------------------ | --------------------------------- |
+| Prompt caching           | 90% input tokens     | Add cache headers        | Prompt Caching                    |
 | Token-efficient tool use | 70% output reduction | Flip a flag              | Prompt Engineering for Efficiency |
-| Batch API                | 50%                  | Queue non-urgent work    | Batch APIs                      |
-| Model routing            | 60-95%               | Route by task complexity | Model Routing                   |
-| Response caching         | 100% on repeats      | Add a cache layer        | Comprehensive Guides            |
-| Prompt compression       | 5-20x                | Use LLMLingua            | Prompt Compression              |
+| Batch API                | 50%                  | Queue non-urgent work    | Batch APIs                        |
+| Model routing            | 60-95%               | Route by task complexity | Model Routing                     |
+| Response caching         | 100% on repeats      | Add a cache layer        | Comprehensive Guides              |
+| Prompt compression       | 5-20x                | Use LLMLingua            | Prompt Compression                |
 
 **Combined pipeline:** Cache prefix (90%) + route to cheapest model (60-95%) + batch non-urgent (50%) + compress prompts (5-20x) + cache responses (100% on repeats) = **95-99% cost reduction** vs. naive approach.
 
