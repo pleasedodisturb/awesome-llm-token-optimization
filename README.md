@@ -48,7 +48,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
-- [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount, automatic for 1024+ token prompts. Extended cache retention now defaults to 24h on the GPT-5 series (mandatory on GPT-5.5+), keeping prefixes warm far longer.
+- [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - 50% discount on GPT-5.5 and earlier; **90% discount on GPT-5.6+** with explicit cache breakpoints and 30-minute minimum cache TTL. Cache writes billed at 1.25× the input rate on GPT-5.6+. Automatic for 1024+ token prompts.
 - [OpenAI Prompt Caching Cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201) - Advanced techniques with code.
 - [Google Gemini Context Caching](https://ai.google.dev/gemini-api/docs/caching) - Implicit (auto) and explicit caching, 90% discount.
 - [Google Vertex AI Caching](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview) - Enterprise context caching.
@@ -264,18 +264,21 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Notable Recent Pricing (June–July 2026)
 
-| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                        |
-| --------------------- | ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). Access suspended June 12 via US export-control directive; **restored July 1, 2026**. |
-| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                                                                                                               |
-| Claude Sonnet 5       | $2.00       | $10.00       | Introductory pricing through Aug 31, 2026 (standard: $3/$15 per MTok); 1M context; most agentic Sonnet; launched June 30, 2026.              |
-| GPT-5.5               | $5.00       | $30.00       | OpenAI flagship; 1M context; 90% cached-input discount                                                                                       |
-| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount                                                                                             |
-| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                                                                                                         |
-| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes                                                                                                    |
-| Gemini 3.1 Pro        | $2.00       | $12.00       | Preview since Feb 2026; ≤200K context; doubles to $4/$18 above 200K tokens                                                                   |
-| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                                                     |
-| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                                |
+| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                                                                                      |
+| --------------------- | ----------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). Access restored July 1, 2026 after export-control suspension. Included in subscriptions through July 12; **metered billing begins July 13, 2026**. |
+| Claude Opus 4.8       | $5.00       | $25.00       | 1M context at standard pricing                                                                                                                                                                             |
+| Claude Sonnet 5       | $2.00       | $10.00       | Introductory pricing through Aug 31, 2026 (standard: $3/$15 per MTok); 1M context; most agentic Sonnet; launched June 30, 2026.                                                                            |
+| GPT-5.6 Sol           | $5.00       | $30.00       | OpenAI flagship (GA July 9, 2026); 1.05M context; 90% cached-input discount; explicit cache breakpoints; cache writes at 1.25× input rate                                                                  |
+| GPT-5.6 Terra         | $2.50       | $15.00       | Balanced tier (GA July 9, 2026); 1.05M context; same 90% cached-input discount as Sol                                                                                                                      |
+| GPT-5.6 Luna          | $1.00       | $6.00        | Cost-optimized tier (GA July 9, 2026); 1.05M context; 90% cached-input discount                                                                                                                            |
+| GPT-5.5               | $5.00       | $30.00       | OpenAI previous flagship; 1M context; 50% cached-input discount                                                                                                                                            |
+| GPT-5.4               | $2.50       | $15.00       | Half the cost of GPT-5.5; 50% Batch API discount                                                                                                                                                           |
+| DeepSeek V4 Flash     | $0.14       | $0.28        | Cheapest frontier; 98% cache savings                                                                                                                                                                       |
+| DeepSeek V4 Pro       | $0.435      | $0.87        | 1M context; thinking + non-thinking modes                                                                                                                                                                  |
+| Gemini 3.1 Pro        | $2.00       | $12.00       | Preview since Feb 2026; ≤200K context; doubles to $4/$18 above 200K tokens                                                                                                                                 |
+| Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                                                                                                                   |
+| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                                                                                              |
 
 ## Prompt Engineering for Efficiency
 
@@ -379,36 +382,38 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### KV Cache & Inference
 
-| Paper                                                                | Year | Key Result                                                                                                                        |
-| -------------------------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
-| [PagedAttention (vLLM)](https://arxiv.org/abs/2309.06180)            | 2023 | Near-zero KV cache waste                                                                                                          |
-| [RadixAttention (SGLang)](https://arxiv.org/abs/2312.07104)          | 2023 | Auto KV cache reuse                                                                                                               |
-| [KV Cache Survey (2026)](https://arxiv.org/abs/2603.20397)           | 2026 | Comprehensive techniques survey                                                                                                   |
-| [VectorQ Semantic Caching](https://arxiv.org/abs/2502.03771)         | 2025 | Up to 100x latency reduction                                                                                                      |
-| [KV-Compress](https://arxiv.org/abs/2410.00161)                      | 2024 | Variable-head-rate compression                                                                                                    |
-| [vAttention](https://arxiv.org/abs/2405.04437)                       | 2024 | 1.99x throughput over vLLM                                                                                                        |
-| [LazyLLM](https://arxiv.org/abs/2407.14057)                          | 2024 | Dynamic token pruning at prefill                                                                                                  |
-| [SlimInfer](https://arxiv.org/abs/2508.06447)                        | 2025 | 1.88x latency reduction                                                                                                           |
-| [Mirror Speculative Decoding](https://arxiv.org/abs/2510.13161)      | 2025 | Breaks serial barrier                                                                                                             |
-| [LongSpec](https://arxiv.org/abs/2502.17421)                         | 2025 | Constant memory speculative decoding                                                                                              |
-| [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026)                                                    |
-| [IceCache](https://arxiv.org/abs/2604.10539)                         | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget                                                                |
-| [Can I Buy Your KV Cache?](https://arxiv.org/abs/2606.13361)         | 2026 | KV cache marketplace: publishers precompute, agents load instead of prefill; 9-50x cheaper compute on Qwen3-4B                    |
-| [LMCache](https://arxiv.org/abs/2510.09665)                          | 2025 | KV cache across GPU/CPU/disk/network; up to 15x throughput with vLLM                                                              |
-| [KV-Fold](https://arxiv.org/abs/2605.12471)                          | 2026 | One-step KV-cache recurrence; training-free long-context inference                                                                |
-| [Thin Keys, Full Values](https://arxiv.org/abs/2603.04427)           | 2026 | SVD-based key-cache compression; up to 16x combined with GQA + quantization                                                       |
-| [Make Each Token Count](https://arxiv.org/abs/2605.09649)            | 2026 | Learnable retention gates for KV eviction that improve long-context accuracy                                                      |
-| [Meta-Soft](https://arxiv.org/abs/2605.22337)                        | 2026 | Composable meta-tokens for context-preserving KV cache compression                                                                |
-| [KeepKV](https://arxiv.org/abs/2504.09936)                           | 2025 | Adaptive lossless merging; 2x+ throughput at 10% KV budget                                                                        |
-| [FreeKV](https://arxiv.org/abs/2505.13109)                           | 2025 | Training-free speculative KV retrieval; up to 13x speedup, near-lossless                                                          |
-| [SmallKV](https://arxiv.org/abs/2508.02751)                          | 2025 | Small-model-assisted eviction compensation; 1.75-2.56x higher throughput                                                          |
-| [Semantic Caching (Microsoft)](https://arxiv.org/abs/2508.07675)     | 2025 | Optimal semantic cache is NP-hard; Reverse Greedy + bandit learning                                                               |
-| [SpecFormer](https://arxiv.org/abs/2511.20340)                       | 2025 | Lossless non-autoregressive drafting that holds up under large-batch serving                                                      |
-| [LaProx](https://arxiv.org/abs/2605.07234)                           | 2026 | Output-aware, layer-wise KV eviction modeling attention×value interaction; beats prior eviction across 19 LongBench/NIAH datasets |
-| [Continuous Semantic Caching](https://arxiv.org/abs/2604.20021)      | 2026 | Theory for semantic caching in continuous embedding space; dynamic ε-net + kernel ridge regression                                |
-| [Learning to Draft (LTD)](https://arxiv.org/abs/2603.01639)          | 2026 | RL co-adapts draft+verify policies to optimize true throughput, not acceptance length (ICLR 2026)                                 |
-| [DDTree (Block Diffusion)](https://arxiv.org/abs/2604.12989)         | 2026 | Block-diffusion draft tree for speculative decoding; outperforms EAGLE-3 at matched node budget                                   |
-| [Graft](https://arxiv.org/abs/2605.20104)                            | 2026 | Training-free prune-then-retrieve framework for speculative decoding draft trees; 5.41× speedup, 21.8% over EAGLE-3 on Qwen3-235B |
+| Paper                                                                | Year | Key Result                                                                                                                               |
+| -------------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [PagedAttention (vLLM)](https://arxiv.org/abs/2309.06180)            | 2023 | Near-zero KV cache waste                                                                                                                 |
+| [RadixAttention (SGLang)](https://arxiv.org/abs/2312.07104)          | 2023 | Auto KV cache reuse                                                                                                                      |
+| [KV Cache Survey (2026)](https://arxiv.org/abs/2603.20397)           | 2026 | Comprehensive techniques survey                                                                                                          |
+| [VectorQ Semantic Caching](https://arxiv.org/abs/2502.03771)         | 2025 | Up to 100x latency reduction                                                                                                             |
+| [KV-Compress](https://arxiv.org/abs/2410.00161)                      | 2024 | Variable-head-rate compression                                                                                                           |
+| [vAttention](https://arxiv.org/abs/2405.04437)                       | 2024 | 1.99x throughput over vLLM                                                                                                               |
+| [LazyLLM](https://arxiv.org/abs/2407.14057)                          | 2024 | Dynamic token pruning at prefill                                                                                                         |
+| [SlimInfer](https://arxiv.org/abs/2508.06447)                        | 2025 | 1.88x latency reduction                                                                                                                  |
+| [Mirror Speculative Decoding](https://arxiv.org/abs/2510.13161)      | 2025 | Breaks serial barrier                                                                                                                    |
+| [LongSpec](https://arxiv.org/abs/2502.17421)                         | 2025 | Constant memory speculative decoding                                                                                                     |
+| [Speculative Speculative Decoding](https://arxiv.org/abs/2603.03251) | 2026 | Parallelizes speculation+verification; 30% faster than standard SD (ICLR 2026)                                                           |
+| [IceCache](https://arxiv.org/abs/2604.10539)                         | 2026 | Semantic clustering for KV pages; 99% accuracy at 25% token budget                                                                       |
+| [Can I Buy Your KV Cache?](https://arxiv.org/abs/2606.13361)         | 2026 | KV cache marketplace: publishers precompute, agents load instead of prefill; 9-50x cheaper compute on Qwen3-4B                           |
+| [LMCache](https://arxiv.org/abs/2510.09665)                          | 2025 | KV cache across GPU/CPU/disk/network; up to 15x throughput with vLLM                                                                     |
+| [KV-Fold](https://arxiv.org/abs/2605.12471)                          | 2026 | One-step KV-cache recurrence; training-free long-context inference                                                                       |
+| [Thin Keys, Full Values](https://arxiv.org/abs/2603.04427)           | 2026 | SVD-based key-cache compression; up to 16x combined with GQA + quantization                                                              |
+| [Make Each Token Count](https://arxiv.org/abs/2605.09649)            | 2026 | Learnable retention gates for KV eviction that improve long-context accuracy                                                             |
+| [Meta-Soft](https://arxiv.org/abs/2605.22337)                        | 2026 | Composable meta-tokens for context-preserving KV cache compression                                                                       |
+| [KeepKV](https://arxiv.org/abs/2504.09936)                           | 2025 | Adaptive lossless merging; 2x+ throughput at 10% KV budget                                                                               |
+| [FreeKV](https://arxiv.org/abs/2505.13109)                           | 2025 | Training-free speculative KV retrieval; up to 13x speedup, near-lossless                                                                 |
+| [SmallKV](https://arxiv.org/abs/2508.02751)                          | 2025 | Small-model-assisted eviction compensation; 1.75-2.56x higher throughput                                                                 |
+| [Semantic Caching (Microsoft)](https://arxiv.org/abs/2508.07675)     | 2025 | Optimal semantic cache is NP-hard; Reverse Greedy + bandit learning                                                                      |
+| [SpecFormer](https://arxiv.org/abs/2511.20340)                       | 2025 | Lossless non-autoregressive drafting that holds up under large-batch serving                                                             |
+| [LaProx](https://arxiv.org/abs/2605.07234)                           | 2026 | Output-aware, layer-wise KV eviction modeling attention×value interaction; beats prior eviction across 19 LongBench/NIAH datasets        |
+| [Continuous Semantic Caching](https://arxiv.org/abs/2604.20021)      | 2026 | Theory for semantic caching in continuous embedding space; dynamic ε-net + kernel ridge regression                                       |
+| [Learning to Draft (LTD)](https://arxiv.org/abs/2603.01639)          | 2026 | RL co-adapts draft+verify policies to optimize true throughput, not acceptance length (ICLR 2026)                                        |
+| [DDTree (Block Diffusion)](https://arxiv.org/abs/2604.12989)         | 2026 | Block-diffusion draft tree for speculative decoding; outperforms EAGLE-3 at matched node budget                                          |
+| [Graft](https://arxiv.org/abs/2605.20104)                            | 2026 | Training-free prune-then-retrieve framework for speculative decoding draft trees; 5.41× speedup, 21.8% over EAGLE-3 on Qwen3-235B        |
+| [Still](https://arxiv.org/abs/2606.07878)                            | 2026 | Per-layer Perceiver compacts KV cache in one forward pass; 8×–200× compression; 8–22pt RULER gain over strongest baseline on Qwen/Gemma  |
+| [Information-Aware KV Cache](https://arxiv.org/abs/2606.26875)       | 2026 | Forward Influence metric shows high-uncertainty tokens have strongest distant-context impact; improves KV compression for long-reasoning |
 
 ### Prompt Optimization
 
