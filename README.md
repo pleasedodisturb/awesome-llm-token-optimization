@@ -186,6 +186,7 @@ Server-side optimizations for inference efficiency.
 - [kvcached](https://github.com/ovg-project/kvcached) - Virtualized elastic KV cache decoupling virtual/physical GPU memory for dynamic GPU sharing; plugs into vLLM/SGLang. ![Stars](https://img.shields.io/github/stars/ovg-project/kvcached)
 - [KVzip](https://github.com/snu-mllab/KVzip) - Query-agnostic KV cache eviction via context reconstruction (NeurIPS 2025 Oral); 3-4x memory reduction, 2x lower latency. ![Stars](https://img.shields.io/github/stars/snu-mllab/KVzip)
 - [DeepSpec](https://github.com/deepseek-ai/DeepSpec) - DeepSeek's open-source speculative decoding stack powering DSpark; 60-85% faster on V4-Flash, 57-78% on V4-Pro; outperforms Eagle-3. MIT license. ![Stars](https://img.shields.io/github/stars/deepseek-ai/DeepSpec)
+- [KV Cache Store](https://github.com/kvcachestore/kvcdn) - Hosted KV-cache artifact registry plus open-source Rust CLI; precompute, verify, quantize, and reuse KV caches across RAG and long-context prompts to cut prefill cost and latency. ![Stars](https://img.shields.io/github/stars/kvcachestore/kvcdn)
 
 ### Research
 
