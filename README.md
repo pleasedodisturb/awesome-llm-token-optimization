@@ -311,6 +311,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [LLM Caching Strategies (CostLens)](https://costlens.dev/blog/llm-caching-strategies) - "90% savings most developers don't know about."
 - [AI Agent Cost Optimization](https://callsphere.tech/blog/ai-agent-cost-optimization-strategies-production) - 60-70% of agent calls suit small models.
 - [Practical Cost + Latency Reduction](https://www.getmaxim.ai/articles/how-to-reduce-llm-cost-and-latency-a-practical-guide-for-production-ai/)
+- [Stop Sending Giant System Prompts: Treat Tokens Like a Scarce Resource](https://www.qolca.org/blog/stop-sending-giant-system-prompts) - Flow-design patterns from a production sales chatbot: parallel cheap-model classification, conditional history summarization, reserving the frontier model for the single generation step, and deterministic code for non-inference control flow.
 - [Vantage LLM Cost Guide](https://www.vantage.sh/blog/optimize-large-language-model-costs) - Enterprise monitoring.
 - [Semantic Highlight for RAG (Zilliz)](https://huggingface.co/blog/zilliz/zilliz-semantic-highlight-model) - 70-80% token reduction.
 - [Optimizing LLM in Production (Hugging Face)](https://huggingface.co/blog/optimize-llm) - Quantization, Flash Attention.
