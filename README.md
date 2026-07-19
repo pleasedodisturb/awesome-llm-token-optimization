@@ -277,6 +277,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | Gemini 3.5 Flash      | $1.50       | $9.00        | Launched May 19, 2026; 1M context window                                                                                                     |
 | Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                                |
 
+**Tokenizer note (Anthropic):** Claude Opus 4.7+, Sonnet 5, and Fable 5 use a newer tokenizer that produces roughly 30% more tokens for the same text; per-token prices are unchanged, so the effective cost of a fixed input rises proportionally (Sonnet 4.6 and earlier keep the previous tokenizer). Benchmark your real workload before assuming a newer model lowers cost — confirmed on Anthropic's official pricing docs (already linked under Provider Pricing Pages above).
+
 ## Prompt Engineering for Efficiency
 
 ### Official Guides
