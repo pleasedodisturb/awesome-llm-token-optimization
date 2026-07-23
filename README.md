@@ -90,6 +90,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 - [Portkey AI Gateway](https://github.com/Portkey-AI/gateway) - Open-source AI gateway routing to 1,600+ LLMs with guardrails, caching, and load balancing. Acquired by Palo Alto Networks (May 2026); gateway remains open-source under Apache 2.0. ![Stars](https://img.shields.io/github/stars/Portkey-AI/gateway)
 - [OpenRouter](https://openrouter.ai/docs/quickstart) - Unified API for 300+ models with [auto-router](https://openrouter.ai/docs/guides/routing/routers/auto-router).
 - [Martian Router](https://route.withmartian.com/) - Patent-pending; cuts costs 20-97% via "Model Mapping".
+- [TierDecay](https://github.com/alebgl77/tierdecay) - Self-distilling tier router for AI coding CLIs; solves each task class once at an expensive tier, distills it into a low-tier playbook entry, then decays the class's default tier down (T3→T2→T1) via a ledger of predicted-vs-executed tiers. Cost drops toward the cheap tier as recurring classes decay. ![Stars](https://img.shields.io/github/stars/alebgl77/tierdecay)
 
 ### Curated Lists
 
