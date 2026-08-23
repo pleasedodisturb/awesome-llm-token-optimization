@@ -250,6 +250,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - Quality + price + speed.
 - [Simon Willison's LLM Prices](https://tools.simonwillison.net/llm-prices) - Interactive calculator.
 - [Helicone LLM Cost Comparison](https://www.helicone.ai/llm-cost) - 300+ model calculator.
+- [Kingy.ai AI API Price Index](https://kingy.ai/kapi/price-index/) - Versioned, source-audited prices for exact API offerings; preserves seller, route, region, service tier, billing mode, cache treatment, and context band, with CC BY JSON/CSV and SHA-256 manifests.
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
