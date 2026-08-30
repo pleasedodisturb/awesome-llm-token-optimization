@@ -264,19 +264,19 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Notable Recent Pricing (June–August 2026)
 
-| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                        |
-| --------------------- | ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). Access suspended June 12 via US export-control directive; **restored July 1, 2026**. |
-| Claude Opus 5         | $5.00       | $25.00       | Supersedes Opus 4.8 at same price; 1M context; 128K output; adaptive thinking; launched July 24, 2026.                                       |
-| Claude Sonnet 5       | $2.00       | $10.00       | Standard price (was introductory; increase to $3/$15 canceled Aug 10, 2026); 1M context; launched June 30, 2026.                             |
-| GPT-5.6 Sol           | $5.00       | $30.00       | OpenAI flagship tier; 1.05M context; explicit cache breakpoints, 90% cached-read discount; launched July 9, 2026.                            |
-| GPT-5.6 Terra         | $2.00       | $12.00       | Mid tier; price cut July 30 (was $2.50/$15); 1.05M context; 50% Batch API discount.                                                          |
-| GPT-5.6 Luna          | $0.20       | $1.20        | High-volume tier; 80% price cut July 30 (was $1/$6); 1.05M context.                                                                          |
-| DeepSeek V4 Flash     | $0.22–$0.44 | $0.66–$1.32  | **Peak/off-peak billing from Aug 16, 2026** (peak: 01:00–04:00, 06:00–10:00 UTC); off-peak half of peak; large cache-hit savings apply.      |
-| DeepSeek V4 Pro       | $0.66–$1.32 | $1.32–$2.64  | 1M context; thinking + non-thinking modes; same peak/off-peak structure as Flash.                                                            |
-| Gemini 3.7 Flash      | $0.75       | $3.75        | Launched Aug 13, 2026; introductory price through Dec 31, 2026 (standard $1.50/$7.50); strong coding gains (DeepSWE 49%→65.3%).              |
-| Gemini 3.6 Flash      | $1.50       | $7.50        | Launched July 21, 2026; 1M context; output price cut from $9.00 vs 3.5 Flash.                                                                |
-| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                                |
+| Model                 | Input /MTok | Output /MTok | Notes                                                                                                                                           |
+| --------------------- | ----------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Fable 5        | $10.00      | $50.00       | Anthropic's most capable model; 1M context (June 2026). Access suspended June 12 via US export-control directive; **restored July 1, 2026**.    |
+| Claude Opus 5         | $5.00       | $25.00       | Supersedes Opus 4.8 at same price; 1M context; 128K output; adaptive thinking; launched July 24, 2026.                                          |
+| Claude Sonnet 5       | $2.00       | $10.00       | Standard price (was introductory; increase to $3/$15 canceled Aug 10, 2026); 1M context; launched June 30, 2026.                                |
+| GPT-5.6 Sol           | $4.00       | $20.00       | OpenAI flagship tier; 1.05M context; explicit cache breakpoints, 90% cached-read discount; promo pricing through Nov 21, 2026 (20% cut Aug 21). |
+| GPT-5.6 Terra         | $2.00       | $12.00       | Mid tier; price cut July 30 (was $2.50/$15); 1.05M context; 50% Batch API discount.                                                             |
+| GPT-5.6 Luna          | $0.20       | $1.20        | High-volume tier; 80% price cut July 30 (was $1/$6); 1.05M context.                                                                             |
+| DeepSeek V4 Flash     | $0.22–$0.44 | $0.66–$1.32  | **Peak/off-peak billing from Aug 16, 2026** (peak: 01:00–04:00, 06:00–10:00 UTC); off-peak half of peak; large cache-hit savings apply.         |
+| DeepSeek V4 Pro       | $0.66–$1.32 | $1.98–$3.96  | 1M context; thinking + non-thinking modes; same peak/off-peak structure as Flash.                                                               |
+| Gemini 3.7 Flash      | $0.75       | $3.75        | Launched Aug 13, 2026; introductory price through Dec 31, 2026 (standard $1.50/$7.50); strong coding gains (DeepSWE 49%→65.3%).                 |
+| Gemini 3.6 Flash      | $1.50       | $7.50        | Launched July 21, 2026; 1M context; output price cut from $9.00 vs 3.5 Flash.                                                                   |
+| Gemini 2.5 Flash-Lite | $0.10       | $0.40        | Budget option                                                                                                                                   |
 
 **Tokenizer note (Anthropic):** Claude Opus 4.7 and later models (including Opus 5), Sonnet 5, and Fable 5 use a newer tokenizer that produces roughly 30% more tokens for the same text; per-token prices are unchanged, so the effective cost of a fixed input rises proportionally (Sonnet 4.6 and earlier keep the previous tokenizer). Benchmark your real workload before assuming a newer model lowers cost — confirmed on Anthropic's official pricing docs (already linked under Provider Pricing Pages above).
 
@@ -435,6 +435,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | [Extra-CoT](https://arxiv.org/abs/2602.08324)                       | 2026 | Mixed-ratio SFT + RL for extreme-ratio CoT compression; ~73% token cut on MATH-500 with +0.6% accuracy                                                                |
 | [CROP](https://arxiv.org/abs/2604.14214)                            | 2026 | Length-regularized automatic prompt optimization; up to ~80.6% output-token reduction (Google/Purdue)                                                                 |
 | [ReCo](https://arxiv.org/abs/2608.04771)                            | 2026 | Reward-coordinated joint optimization of KV compression, reflection-token penalty, and early stopping; 37–65% token cut, 2.08–2.35× latency improvement over full CoT |
+| [Reflection Steering](https://arxiv.org/abs/2608.25542)             | 2026 | Training-free framework that identifies and suppresses reflection-associated activation directions; 16.9% average reasoning-token reduction with no accuracy loss     |
+| [The Reasoning Tax](https://arxiv.org/abs/2608.26235)               | 2026 | Introduces Token Economy Score (TES) quantifying accuracy gain per extra token; shows most tasks penalize reasoning models on TES (TPCTC 2026)                        |
 
 ## Community Resources
 
