@@ -252,6 +252,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Helicone LLM Cost Comparison](https://www.helicone.ai/llm-cost) - 300+ model calculator.
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
+- [ModelBenchmark](https://modelbenchmark.io) - Specs, prices, benchmarks and lifecycle for 2,000+ AI models.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
 
 ### Provider Pricing Pages
