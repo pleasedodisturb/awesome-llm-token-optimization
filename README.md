@@ -262,12 +262,13 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [DeepSeek Pricing](https://api-docs.deepseek.com/quick_start/pricing) - Official DeepSeek pricing.
 - [Mistral Pricing](https://mistral.ai/pricing) - Official Mistral pricing.
 
-### Notable Recent Pricing (June–August 2026)
+### Notable Recent Pricing (June–September 2026)
 
 | Model                 | Input /MTok | Output /MTok | Notes                                                                                                                          |
 | --------------------- | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | Claude Fable 5.1      | $10.00      | $50.00       | Released Sep 1, 2026; same pricing as Fable 5; cache-read rate cut 75% to $0.25/MTok; 1M context.                              |
 | Claude Opus 5         | $5.00       | $25.00       | Launched July 24, 2026; replaces Opus 4.8; 1M context.                                                                         |
+| Claude Haiku 4.5      | $1.00       | $5.00        | Fastest/cheapest current Claude; 200K context.                                                                                 |
 | Claude Sonnet 5       | $2.00       | $10.00       | Permanent pricing (planned increase to $3/$15 canceled Aug 10, 2026); 1M context; most agentic Sonnet; launched June 30, 2026. |
 | GPT-6 Astra           | $10.00      | $50.00       | OpenAI new flagship (Sep 3, 2026); 1M context; 90% cache discount ($1/MTok cached, $12.50/MTok write).                         |
 | GPT-5.6 Sol           | $4.00       | $20.00       | Promo pricing through Nov 21, 2026; 90% cached-read discount.                                                                  |
@@ -330,26 +331,27 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Prompt Compression
 
-| Paper                                                              | Year | Key Result                                                                                                                                             |
-| ------------------------------------------------------------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Prompt Compression Survey](https://arxiv.org/abs/2410.12388)      | 2024 | Comprehensive survey of all techniques                                                                                                                 |
-| [LLMLingua](https://arxiv.org/abs/2310.05736)                      | 2023 | Up to 20x compression (EMNLP)                                                                                                                          |
-| [LLMLingua-2](https://arxiv.org/abs/2403.12968)                    | 2024 | 3-6x faster via BERT distillation (ACL)                                                                                                                |
-| [LongLLMLingua](https://arxiv.org/abs/2310.06839)                  | 2023 | 4x fewer tokens in long contexts                                                                                                                       |
-| [Selective Context](https://arxiv.org/abs/2310.06201)              | 2023 | 50% reduction via self-information pruning                                                                                                             |
-| [RECOMP](https://arxiv.org/abs/2310.04408)                         | 2023 | 5% token ratio for retrieved docs                                                                                                                      |
-| [500xCompressor](https://arxiv.org/abs/2408.03094)                 | 2024 | 6-480x compression ratios                                                                                                                              |
-| [LoPace](https://arxiv.org/abs/2602.13266)                         | 2026 | Lossless; 72.2% savings                                                                                                                                |
-| [SCOPE](https://arxiv.org/abs/2508.15813)                          | 2025 | Training-free generative rewriting                                                                                                                     |
-| [Dynamic Compressing](https://arxiv.org/abs/2504.11004)            | 2025 | MDP-based adaptive token removal                                                                                                                       |
-| [Empirical Study](https://arxiv.org/abs/2505.00019)                | 2025 | Benchmarks 6 methods across 13 datasets                                                                                                                |
-| [Telegraph English](https://arxiv.org/abs/2605.04426)              | 2026 | Symbolic rewriting protocol; ~50% token reduction at 99.1% accuracy; outperforms LLMLingua-2 at matched ratio                                          |
-| [Prompt Compression in the Wild](https://arxiv.org/abs/2604.02985) | 2026 | First large-scale production study (30K queries) of the latency vs. quality tradeoff                                                                   |
-| [Production Compression RCT](https://arxiv.org/abs/2603.23525)     | 2026 | Pre-registered randomized trial: moderate compression −27.9% cost; over-compression backfires                                                          |
-| [LongCodeZip](https://arxiv.org/abs/2510.00446)                    | 2025 | Code-aware two-stage compression; up to 5.6x with no performance loss (ASE 2025)                                                                       |
-| [Behavior-Equivalent Token](https://arxiv.org/abs/2511.23271)      | 2025 | Distills a long system prompt into one learned token; no aux model or labels                                                                           |
-| [SAC (Semantic Anchors)](https://arxiv.org/abs/2510.08907)         | 2025 | Autoencoding-free context compression via selected anchor tokens; no compression-token pretraining                                                     |
-| [Activation Aggregation](https://arxiv.org/abs/2607.08399)         | 2026 | Compresses instruction prompts to a single activation vector via weighted layer aggregation; <2% accuracy drop vs full-prompt baseline, no extra model |
+| Paper                                                                     | Year | Key Result                                                                                                                                             |
+| ------------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Prompt Compression Survey](https://arxiv.org/abs/2410.12388)             | 2024 | Comprehensive survey of all techniques                                                                                                                 |
+| [LLMLingua](https://arxiv.org/abs/2310.05736)                             | 2023 | Up to 20x compression (EMNLP)                                                                                                                          |
+| [LLMLingua-2](https://arxiv.org/abs/2403.12968)                           | 2024 | 3-6x faster via BERT distillation (ACL)                                                                                                                |
+| [LongLLMLingua](https://arxiv.org/abs/2310.06839)                         | 2023 | 4x fewer tokens in long contexts                                                                                                                       |
+| [Selective Context](https://arxiv.org/abs/2310.06201)                     | 2023 | 50% reduction via self-information pruning                                                                                                             |
+| [RECOMP](https://arxiv.org/abs/2310.04408)                                | 2023 | 5% token ratio for retrieved docs                                                                                                                      |
+| [500xCompressor](https://arxiv.org/abs/2408.03094)                        | 2024 | 6-480x compression ratios                                                                                                                              |
+| [LoPace](https://arxiv.org/abs/2602.13266)                                | 2026 | Lossless; 72.2% savings                                                                                                                                |
+| [SCOPE](https://arxiv.org/abs/2508.15813)                                 | 2025 | Training-free generative rewriting                                                                                                                     |
+| [Dynamic Compressing](https://arxiv.org/abs/2504.11004)                   | 2025 | MDP-based adaptive token removal                                                                                                                       |
+| [Empirical Study](https://arxiv.org/abs/2505.00019)                       | 2025 | Benchmarks 6 methods across 13 datasets                                                                                                                |
+| [Telegraph English](https://arxiv.org/abs/2605.04426)                     | 2026 | Symbolic rewriting protocol; ~50% token reduction at 99.1% accuracy; outperforms LLMLingua-2 at matched ratio                                          |
+| [Prompt Compression in the Wild](https://arxiv.org/abs/2604.02985)        | 2026 | First large-scale production study (30K queries) of the latency vs. quality tradeoff                                                                   |
+| [Production Compression RCT](https://arxiv.org/abs/2603.23525)            | 2026 | Pre-registered randomized trial: moderate compression −27.9% cost; over-compression backfires                                                          |
+| [LongCodeZip](https://arxiv.org/abs/2510.00446)                           | 2025 | Code-aware two-stage compression; up to 5.6x with no performance loss (ASE 2025)                                                                       |
+| [Behavior-Equivalent Token](https://arxiv.org/abs/2511.23271)             | 2025 | Distills a long system prompt into one learned token; no aux model or labels                                                                           |
+| [SAC (Semantic Anchors)](https://arxiv.org/abs/2510.08907)                | 2025 | Autoencoding-free context compression via selected anchor tokens; no compression-token pretraining                                                     |
+| [Activation Aggregation](https://arxiv.org/abs/2607.08399)                | 2026 | Compresses instruction prompts to a single activation vector via weighted layer aggregation; <2% accuracy drop vs full-prompt baseline, no extra model |
+| [Token Reduction Is Not Cost Reduction](https://arxiv.org/abs/2607.12161) | 2026 | Empirical study on API-based coding agents: cache traffic dominates billed cost (~87%); removing tokens can raise total cost                           |
 
 ### Model Routing & Cascading
 
