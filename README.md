@@ -270,7 +270,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 | Claude Opus 5         | $5.00       | $25.00       | Launched July 24, 2026; replaces Opus 4.8; 1M context.                                                                         |
 | Claude Haiku 4.5      | $1.00       | $5.00        | Fastest/cheapest current Claude; 200K context.                                                                                 |
 | Claude Sonnet 5       | $2.00       | $10.00       | Permanent pricing (planned increase to $3/$15 canceled Aug 10, 2026); 1M context; most agentic Sonnet; launched June 30, 2026. |
-| GPT-6 Astra           | $10.00      | $50.00       | OpenAI new flagship (Sep 3, 2026); 1M context; 90% cache discount ($1/MTok cached, $12.50/MTok write).                         |
+| GPT-6 Astra           | $10.00      | $50.00       | OpenAI new flagship (Sep 3, 2026); 1M context; 90% cache discount ($1/MTok cached read, $12.50/MTok write).                    |
 | GPT-5.6 Sol           | $4.00       | $20.00       | Promo pricing through Nov 21, 2026; 90% cached-read discount.                                                                  |
 | GPT-5.6 Terra         | $2.00       | $12.00       | Mid-tier; 90% cached-read discount.                                                                                            |
 | GPT-5.6 Luna          | $0.20       | $1.20        | Nano tier; 90% cached-read discount.                                                                                           |
