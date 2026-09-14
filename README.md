@@ -44,7 +44,7 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 
 ### Provider Docs
 
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount on cache reads, 5min/1hr TTL. Minimum cacheable prefix: 512 tokens on Fable 5.1/Opus 5; 4,096 on Haiku 4.5/Opus 4.6; 1,024 on Sonnet 4.6/Opus 4.8/Sonnet 5. Fable 5.1 cache-read rate: $0.25/MTok (75% cut from Fable 5).
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) - 90% discount on cache reads; writes cost 1.25× input on the 5min TTL and 2× on the 1hr, so 5min breaks even at two requests and 1hr at three. Minimum cacheable prefix is model-dependent and not monotonic across generations: 512 tokens on Fable 5.1/Opus 5; 1,024 on Sonnet 4.6/Opus 4.8/Sonnet 5; 2,048 on Opus 4.7; 4,096 on Haiku 4.5/Opus 4.6 — so a 3K-token prefix caches on Opus 5 but silently will not on Haiku 4.5. Fable 5.1 cache-read rate: $0.25/MTok (75% cut from Fable 5).
 - [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
 - [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
 - [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
