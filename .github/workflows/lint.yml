@@ -22,3 +22,70 @@ jobs:
         run: npx --yes prettier@latest --check "README.md"
       - name: awesome-lint
         run: npx --yes awesome-lint
+
+  entry-viability:
+    name: entry-viability
+    runs-on: ubuntu-latest
+    # Only meaningful on a PR: it inspects the entries this change ADDS to README.md.
+    if: github.event_name == 'pull_request'
+    # Explicit, not merely inherited from the workflow block.
+    permissions:
+      contents: read
+    steps:
+      # The checker is executed from the BASE revision, never from the pull request's own
+      # copy. This job holds a token and the PR author controls every file in their branch,
+      # so running their version of the script would hand them the credential. Only the
+      # README.md being judged comes from the PR.
+      - name: Check out the trusted base revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          # actions/checkout persists the job token into .git/config by default
+          # (http.<host>/.extraheader). Dropping GH_TOKEN from the environment is not enough
+          # on the bootstrap path, where PR-controlled code runs: it could read the header
+          # straight out of git config. This repo is public, so unauthenticated fetch works.
+          persist-credentials: false
+      - name: Check out the pull request
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: pr
+          persist-credentials: false
+      # Bootstrap: on the PR that ADDS the checker, the base revision has no copy of it.
+      # Fall back to the PR's copy, but WITHOUT a token — the reason to prefer the base copy
+      # is that PR-controlled code must never hold a credential, so the fallback drops the
+      # credential rather than the check. Unauthenticated GitHub API allows 60 requests/hour,
+      # comfortably above the 20-entry ceiling. Once this lands, base always has the checker.
+      - name: Select the trusted checker
+        id: pick
+        run: |
+          if [ -f base/scripts/check-entry-viability.sh ]; then
+            echo "dir=base"       >> "$GITHUB_OUTPUT"
+            echo "trusted=true"   >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=pr"         >> "$GITHUB_OUTPUT"
+            echo "trusted=false"  >> "$GITHUB_OUTPUT"
+            echo "::notice::Base revision has no checker (bootstrap PR) — running the PR copy without a token."
+          fi
+
+      # If the gate's own tests fail, its verdicts mean nothing — so they run first.
+      - name: Test the inclusion-bar logic
+        working-directory: ${{ steps.pick.outputs.dir }}
+        run: bash scripts/test/test-entry-viability.sh
+
+      - name: Check new entries against the inclusion bar (trusted base copy)
+        if: steps.pick.outputs.trusted == 'true'
+        working-directory: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          bash ../base/scripts/check-entry-viability.sh --base "origin/${{ github.base_ref }}"
+
+      - name: Check new entries against the inclusion bar (bootstrap, no token)
+        if: steps.pick.outputs.trusted == 'false'
+        working-directory: pr
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          bash scripts/check-entry-viability.sh --base "origin/${{ github.base_ref }}"
