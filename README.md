@@ -248,6 +248,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 ### Live Pricing Tools
 
 - [Price Per Token](https://pricepertoken.com/) - Daily-updated, 300+ models.
+- [AI API Cost Calculator](https://aicostcalc.net/) - 40+ models with cache and Batch API pricing, reconciled daily against the LiteLLM registry, with a public price-change log, RSS and free JSON API.
 - [Artificial Analysis Calculator](https://artificialanalysis.ai/tools/llm-price-calculator) - Free calculator, 100+ models.
 - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - Quality + price + speed.
 - [Simon Willison's LLM Prices](https://tools.simonwillison.net/llm-prices) - Interactive calculator.
