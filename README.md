@@ -256,6 +256,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
+- [LLM Versus API Cost Calculator](https://llmversus.vercel.app/tools/api-cost-calculator/) - Free calculator comparing LLM API costs across 50+ models with monthly estimates side-by-side.
 
 ### Provider Pricing Pages
 
