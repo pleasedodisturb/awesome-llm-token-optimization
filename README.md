@@ -256,7 +256,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
 - [WhatLLM](https://whatllm.org/) - 256 models, 43+ providers, weekly updates.
-- [TokenMeter](https://rabayid.com/) - Free, no-account calculator that applies each provider's prompt-cache writes, cached reads, batch tiers and long-context tiering, then ranks 28 models by real monthly cost for a given workload.
+- [TokenMeter](https://rabayid.com/) - Free, no-account calculator that applies each provider's prompt-cache writes, cached reads, batch tiers and long-context tiering, then ranks 28 models by estimated monthly cost for a given workload. Rates are published as an [open, citable dataset](https://github.com/rabayid/llm-api-pricing).
 
 ### Provider Pricing Pages
 
