@@ -486,7 +486,6 @@ _Prices per million tokens, checked 2026-10-13._
 
 - [LLM Safe Haven](https://github.com/pleasedodisturb/llm-safe-haven) - Security toolkit for AI coding agents. `npx llm-safe-haven` hardens Claude Code, Cursor, Windsurf in 60 seconds. Companion project — agent retries from security failures waste tokens.
 - [Awesome AI Efficiency (Pruna)](https://github.com/PrunaAI/awesome-ai-efficiency) - Curated list on making AI faster, cheaper, smaller, and greener.
-- [Awesome Efficient LLM](https://github.com/horseee/Awesome-Efficient-LLM) - Large curated list of efficient-LLM papers and tools. **Note: last updated June 2025.**
 - [Awesome LLM Inference](https://github.com/xlite-dev/Awesome-LLM-Inference) - Actively maintained paper list on inference: KV cache, prompt and context compression, disaggregated serving. ![Stars](https://img.shields.io/github/stars/xlite-dev/Awesome-LLM-Inference)
 - [Awesome AI Tokenomics](https://github.com/QuesmaOrg/awesome-ai-tokenomics) - Curated list on token economics: monitoring, chargeback, budgets, cache accounting, and governance. ![Stars](https://img.shields.io/github/stars/QuesmaOrg/awesome-ai-tokenomics)
 - [Awesome Efficient Agents](https://github.com/yxf203/Awesome-Efficient-Agents) - Papers on cost-aware tool calling and trajectory efficiency for LLM agents, companion to a 2026 survey. ![Stars](https://img.shields.io/github/stars/yxf203/Awesome-Efficient-Agents)
