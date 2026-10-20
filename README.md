@@ -45,11 +45,12 @@ Reuse previously-processed prompt prefixes to avoid re-computing the same tokens
 ### Provider Docs
 
 - [Anthropic Prompt Caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) - Cache reads cost 0.1x input (0.05x on Opus 5.5/Sonnet 5.5, 0.025x on Fable 5.1); 5min/1hr TTL. Minimum cacheable prefix: 512 tokens on Fable/Opus/Sonnet/Haiku 5.x, 1,024 on Sonnet 4.6/Opus 4.8/Sonnet 5, 2,048 on Opus 4.7, 4,096 on Opus 4.6/4.5/Haiku 4.5.
-- [Anthropic Caching Announcement](https://www.anthropic.com/news/prompt-caching) - Blog post explaining economics.
-- [Anthropic Token-Saving Updates](https://www.anthropic.com/news/token-saving-updates) - Cache-aware rate limits, simplified caching.
-- [Anthropic Extended Thinking + Caching](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking) - Thinking blocks get cached in tool-use loops.
+- [Anthropic Caching Announcement](https://claude.com/resources/articles/prompt-caching) - Blog post explaining economics.
+- [Anthropic Token-Saving Updates](https://claude.com/resources/articles/token-saving-updates) - Cache-aware rate limits, simplified caching.
+- [Anthropic Thinking + Caching](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-and-prompt-caching) - Thinking blocks are cached with tool results in tool-use loops; changing effort or thinking budget invalidates the cached prefix.
 - [Anthropic Cache Diagnostics](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics) - GA since Sep 2026: opt in per request and the response reports where the cached prefix diverged (model, system, tools, or messages).
 - [OpenAI Prompt Caching](https://platform.openai.com/docs/guides/prompt-caching) - Automatic for prompts of 1,024+ tokens; the cached-input discount, retention options, and (on GPT-5.6 and later) cache-write charges vary by model generation, so check the per-model table.
+- [OpenAI: Better Prompt Caching for GPT-6](https://openai.com/index/better-prompt-caching-for-gpt-6/) - Sep 2026: shared prefixes reused within a 30-minute window earn up to 90% off cached input, plus cache monitoring and miss-diagnosis tooling.
 - [OpenAI Prompt Caching Cookbook](https://developers.openai.com/cookbook/examples/prompt_caching_201) - Advanced techniques with code.
 - [Google Gemini Context Caching](https://ai.google.dev/gemini-api/docs/caching) - Implicit (auto) and explicit caching, 90% discount.
 - [Google Vertex AI Caching](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview) - Enterprise context caching.
@@ -69,7 +70,7 @@ Structure prompts so the system prompt + user profile is the first ~2,000 tokens
 50% discounts for non-time-critical requests. Combine with caching for 95% savings.
 
 - [Anthropic Message Batches](https://platform.claude.com/docs/en/build-with-claude/batch-processing) - 50% discount; up to 100,000 requests or 256 MB per batch; most batches finish within an hour, 24h maximum.
-- [Anthropic Batches Announcement](https://www.anthropic.com/news/message-batches-api) - Use cases and GA details.
+- [Anthropic Batches Announcement](https://claude.com/resources/articles/message-batches-api) - Use cases and GA details.
 - [OpenAI Batch API](https://platform.openai.com/docs/guides/batch) - 50% discount, 50K requests per file.
 - [OpenAI Batch API FAQ](https://help.openai.com/en/articles/9197833-batch-api-faq) - Limits and behavior.
 - [Google Gemini Batch API](https://ai.google.dev/gemini-api/docs/batch-api) - 50% discount, combinable with context caching.
@@ -84,7 +85,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 
 - [RouteLLM](https://github.com/lm-sys/RouteLLM) - Open-source LLM router by LMSYS. Trains routers from preference data; 2x+ cost reduction. **Note: last commit Aug 2024; LMSYS team shifted focus to Chatbot Arena.** ![Stars](https://img.shields.io/github/stars/lm-sys/RouteLLM)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
-- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Note: the Python SDK was archived Dec 2025 (read-only); the [notdiamond.ai](https://www.notdiamond.ai/) service remains active.** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
+- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Note: the Python SDK was archived Dec 2025 (read-only); the [notdiamond.ai](https://www.notdiamond.ai/) service remains active and SDK development continues in [not-diamond-python](https://github.com/Not-Diamond/not-diamond-python).** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
 - [Free Claude Code](https://github.com/Alishahryar1/free-claude-code) - Local AGPL-3.0 proxy that runs Claude Code, Codex, OpenCode, Cline, Aider and other coding agents against 60+ providers (free tiers, subscriptions, local models) with per-tier model mapping and ordered fallbacks, and short-circuits Claude Code's housekeeping sub-requests (quota probes, command-prefix checks, session titles, suggestions, filepath extraction) locally so they cost zero provider tokens. ![Stars](https://img.shields.io/github/stars/Alishahryar1/free-claude-code)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.3 "Themis" (June 2026); SAAR adds session-aware model selection cutting model switches 79% in multi-agent deployments. ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
@@ -156,7 +157,7 @@ Rule-based lossless distillation achieves **3-4:1 compression** without any mode
 ### Provider Docs
 
 - [Anthropic Long Context Tips](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips) - Place docs at top, use XML tags.
-- [Anthropic Context Windows](https://docs.anthropic.com/en/docs/build-with-claude/context-windows) - How context works, server-side compaction.
+- [Anthropic Context Windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) - How context works; 1M context at standard pricing on Claude 4.6+ (Haiku 5.5 excepted).
 - [Anthropic Compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) - Server-side context compaction (beta): on-demand or threshold-triggered summarization (default trigger 150K input tokens) so long agent sessions keep running without client-side pruning.
 - [Anthropic Context Editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) - Beta: automatically clears old tool results (default trigger 100K tokens, keeps the last 3) and thinking blocks; clearing invalidates the cached prefix, so budget for a cache write.
 - [Anthropic Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) - Finding the smallest high-signal token set.
@@ -169,6 +170,7 @@ Rule-based lossless distillation achieves **3-4:1 compression** without any mode
 - [Context Engineering Guide](https://github.com/mlnjsh/context-engineering) - Curated papers and tools.
 - [Efficient Context Management (JetBrains)](https://blog.jetbrains.com/research/2025/12/efficient-context-management/) - Observation masking vs summarization.
 - [OpenProvence](https://github.com/hotchpotch/open_provence) - Open reranker-pruner that drops ~99% off-topic sentences and compresses 80-90% of relevant RAG text; CPU-friendly. ![Stars](https://img.shields.io/github/stars/hotchpotch/open_provence)
+- [Chonkie](https://github.com/feyninc/chonkie) - Lightweight chunking library with token-aware, semantic, and code chunkers for RAG pipelines (MIT). ![Stars](https://img.shields.io/github/stars/feyninc/chonkie)
 
 ## KV Cache Optimization
 
@@ -196,6 +198,8 @@ Server-side optimizations for inference efficiency.
 - [KVzip](https://github.com/snu-mllab/KVzip) - Query-agnostic KV cache eviction via context reconstruction (NeurIPS 2025 Oral); 3-4x memory reduction, 2x lower latency. ![Stars](https://img.shields.io/github/stars/snu-mllab/KVzip)
 - [DeepSpec](https://github.com/deepseek-ai/DeepSpec) - DeepSeek's open-source speculative decoding stack powering DSpark; 60-85% faster on V4-Flash, 57-78% on V4-Pro; outperforms Eagle-3. MIT license. ![Stars](https://img.shields.io/github/stars/deepseek-ai/DeepSpec)
 - [FlexKV](https://github.com/taco-project/FlexKV) - Tencent's multi-tier KV cache store (CPU/SSD/cloud, Mooncake RDMA transport) integrated with vLLM, SGLang, TensorRT-LLM, and Dynamo (Apache-2.0). ![Stars](https://img.shields.io/github/stars/taco-project/FlexKV)
+- [DFlash](https://github.com/z-lab/dflash) - Block-diffusion speculative drafter (MIT) served through vLLM, SGLang, or llama.cpp. ![Stars](https://img.shields.io/github/stars/z-lab/dflash)
+- [Speculators](https://github.com/vllm-project/speculators) - vLLM's library for building, evaluating, and serving speculative-decoding drafters (Apache-2.0). ![Stars](https://img.shields.io/github/stars/vllm-project/speculators)
 
 ### Research
 
@@ -208,6 +212,7 @@ _The full KV-cache paper table lives in the Academic Papers section below._
 
 - [mini-sglang](https://github.com/sgl-project/mini-sglang) - Learn LLM serving internals.
 - [tiny-llm](https://github.com/skyzh/tiny-llm) - Build a tiny vLLM on Apple Silicon.
+- [InferenceX](https://github.com/SemiAnalysisAI/InferenceX) - SemiAnalysis's open benchmark harness measuring throughput and cost per million tokens across inference engines and hardware (Apache-2.0). ![Stars](https://img.shields.io/github/stars/SemiAnalysisAI/InferenceX)
 
 ## Browser Tool Efficiency
 
@@ -248,7 +253,8 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [OpenLLMetry](https://github.com/traceloop/openllmetry) - OpenTelemetry-based GenAI observability instrumenting LLM and vector-DB calls with per-call token and latency telemetry. ![Stars](https://img.shields.io/github/stars/traceloop/openllmetry)
 - [MLflow](https://github.com/mlflow/mlflow) - Open-source AI/ML platform with GenAI observability in MLflow 3.x: LLM call tracing with per-span token tracking, prompt optimization tooling, and AI Gateway integration for cost control. ![Stars](https://img.shields.io/github/stars/mlflow/mlflow)
 - [Helicone AI Gateway](https://github.com/Helicone/ai-gateway) - Fastest open-source AI gateway (Rust). ![Stars](https://img.shields.io/github/stars/Helicone/ai-gateway)
-- [Anthropic Token Counter](https://docs.anthropic.com/en/api/messages-count-tokens) - Free pre-flight token counting endpoint.
+- [Anthropic Token Counter](https://platform.claude.com/docs/en/api/messages/count_tokens) - Free pre-flight token counting endpoint.
+- [Claude Code Cost Management](https://code.claude.com/docs/en/costs) - Official guide to Claude Code spend: `/usage` cache-hit diagnostics, auto-compaction thresholds, MCP output caps, and per-developer benchmarks (about $13 per developer per active day on average).
 - [tiktoken](https://github.com/openai/tiktoken) - OpenAI's fast BPE tokenizer (Python/Rust), 3-6x faster.
 - [LangSmith Cost Tracking](https://docs.langchain.com/langsmith/cost-tracking) - Automatic recording with dashboards.
 - [LlamaIndex Cost Analysis](https://docs.llamaindex.ai/en/stable/understanding/evaluating/cost_analysis/) - Estimate costs before calls.
@@ -269,7 +275,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Provider Pricing Pages
 
-- [Anthropic Pricing](https://docs.anthropic.com/en/docs/about-claude/pricing) - Official Claude model pricing.
+- [Anthropic Pricing](https://platform.claude.com/docs/en/about-claude/pricing) - Official Claude model pricing.
 - [OpenAI Pricing](https://openai.com/api/pricing/) - Official OpenAI API pricing.
 - [Google Gemini Pricing](https://ai.google.dev/gemini-api/docs/pricing) - Official Gemini API pricing.
 - [DeepSeek Pricing](https://api-docs.deepseek.com/quick_start/pricing) - Official DeepSeek pricing.
@@ -315,7 +321,7 @@ _Prices per million tokens, checked 2026-10-13._
 - [OpenAI Prompt Engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) - Strategies and tactics.
 - [OpenAI Cost Optimization](https://developers.openai.com/api/docs/guides/cost-optimization) - Input minimization, model selection, caching.
 - [OpenAI Optimization Cookbook](https://developers.openai.com/cookbook/topic/optimization) - Collection of notebooks.
-- [Token-Efficient Tool Use (Anthropic)](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/token-efficient-tool-use) - 70% output token reduction.
+- [Token-Efficient Tool Use (Anthropic)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/token-efficient-tool-use) - 70% output token reduction.
 
 ### Community
 
@@ -480,7 +486,11 @@ _Prices per million tokens, checked 2026-10-13._
 
 - [LLM Safe Haven](https://github.com/pleasedodisturb/llm-safe-haven) - Security toolkit for AI coding agents. `npx llm-safe-haven` hardens Claude Code, Cursor, Windsurf in 60 seconds. Companion project — agent retries from security failures waste tokens.
 - [Awesome AI Efficiency (Pruna)](https://github.com/PrunaAI/awesome-ai-efficiency) - Curated list on making AI faster, cheaper, smaller, and greener.
-- [Awesome Efficient LLM](https://github.com/horseee/Awesome-Efficient-LLM) - Large curated list of efficient-LLM papers and tools.
+- [Awesome Efficient LLM](https://github.com/horseee/Awesome-Efficient-LLM) - Large curated list of efficient-LLM papers and tools. **Note: last updated June 2025.**
+- [Awesome LLM Inference](https://github.com/xlite-dev/Awesome-LLM-Inference) - Actively maintained paper list on inference: KV cache, prompt and context compression, disaggregated serving. ![Stars](https://img.shields.io/github/stars/xlite-dev/Awesome-LLM-Inference)
+- [Awesome AI Tokenomics](https://github.com/QuesmaOrg/awesome-ai-tokenomics) - Curated list on token economics: monitoring, chargeback, budgets, cache accounting, and governance. ![Stars](https://img.shields.io/github/stars/QuesmaOrg/awesome-ai-tokenomics)
+- [Awesome Efficient Agents](https://github.com/yxf203/Awesome-Efficient-Agents) - Papers on cost-aware tool calling and trajectory efficiency for LLM agents, companion to a 2026 survey. ![Stars](https://img.shields.io/github/stars/yxf203/Awesome-Efficient-Agents)
+- [Awesome Efficient Reasoning](https://github.com/hemingkx/Awesome-Efficient-Reasoning) - Paper list on efficient reasoning and shorter chains of thought. ![Stars](https://img.shields.io/github/stars/hemingkx/Awesome-Efficient-Reasoning)
 
 ### Blogs
 
