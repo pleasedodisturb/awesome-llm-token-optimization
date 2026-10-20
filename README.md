@@ -85,7 +85,7 @@ Route simple tasks to cheaper models. 80% of typical LLM calls don't need the mo
 
 - [RouteLLM](https://github.com/lm-sys/RouteLLM) - Open-source LLM router by LMSYS. Trains routers from preference data; 2x+ cost reduction. **Note: last commit Aug 2024; LMSYS team shifted focus to Chatbot Arena.** ![Stars](https://img.shields.io/github/stars/lm-sys/RouteLLM)
 - [LiteLLM](https://github.com/BerriAI/litellm) - SDK + proxy for 100+ LLMs with routing, cost tracking. Strategies: least-busy, cost-based, latency-based. ![Stars](https://img.shields.io/github/stars/BerriAI/litellm)
-- [NotDiamond](https://github.com/Not-Diamond/notdiamond-python) - Per-query best-model selection. **Note: the Python SDK was archived Dec 2025 (read-only); the [notdiamond.ai](https://www.notdiamond.ai/) service remains active.** ![Stars](https://img.shields.io/github/stars/Not-Diamond/notdiamond-python)
+- [NotDiamond](https://www.notdiamond.ai/) - Hosted per-query best-model selection; the original Python SDK was archived in Dec 2025 and development continues in [not-diamond-python](https://github.com/Not-Diamond/not-diamond-python).
 - [Bifrost](https://github.com/maximhq/bifrost) - 50x faster than LiteLLM; adaptive load balancer, 1000+ models. ![Stars](https://img.shields.io/github/stars/maximhq/bifrost)
 - [Free Claude Code](https://github.com/Alishahryar1/free-claude-code) - Local AGPL-3.0 proxy that runs Claude Code, Codex, OpenCode, Cline, Aider and other coding agents against 60+ providers (free tiers, subscriptions, local models) with per-tier model mapping and ordered fallbacks, and short-circuits Claude Code's housekeeping sub-requests (quota probes, command-prefix checks, session titles, suggestions, filepath extraction) locally so they cost zero provider tokens. ![Stars](https://img.shields.io/github/stars/Alishahryar1/free-claude-code)
 - [vLLM Semantic Router](https://github.com/vllm-project/semantic-router) - System-level signal-driven router for Mixture-of-Models across cloud, data center, and edge. v0.3 "Themis" (June 2026); SAAR adds session-aware model selection cutting model switches 79% in multi-agent deployments. ![Stars](https://img.shields.io/github/stars/vllm-project/semantic-router)
@@ -156,7 +156,7 @@ Rule-based lossless distillation achieves **3-4:1 compression** without any mode
 
 ### Provider Docs
 
-- [Anthropic Long Context Tips](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips) - Place docs at top, use XML tags.
+- [Anthropic Long Context Tips](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips) - Place docs at top, use XML tags.
 - [Anthropic Context Windows](https://platform.claude.com/docs/en/build-with-claude/context-windows) - How context works; 1M context at standard pricing on Claude 4.6+ (Haiku 5.5 excepted).
 - [Anthropic Compaction](https://platform.claude.com/docs/en/build-with-claude/compaction) - Server-side context compaction (beta): on-demand or threshold-triggered summarization (default trigger 150K input tokens) so long agent sessions keep running without client-side pruning.
 - [Anthropic Context Editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) - Beta: automatically clears old tool results (default trigger 100K tokens, keeps the last 3) and thinking blocks; clearing invalidates the cached prefix, so budget for a cache write.
@@ -312,8 +312,8 @@ _Prices per million tokens, checked 2026-10-13._
 
 ### Official Guides
 
-- [Anthropic Prompt Engineering](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) - Master guide.
-- [Anthropic Claude 4 Best Practices](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) - Model-specific.
+- [Anthropic Prompt Engineering](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview) - Master guide.
+- [Anthropic Claude 4 Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices) - Model-specific.
 - [Anthropic Effort Parameter](https://platform.claude.com/docs/en/build-with-claude/effort) - GA: `output_config.effort` (`low` to `max`) trades reasoning and output tokens against quality; changing it mid-conversation invalidates the prompt cache.
 - [Anthropic Interactive Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial) - 9-chapter course.
 - [Anthropic Tool Search](https://www.anthropic.com/engineering/advanced-tool-use) - 85% token reduction for large tool libraries.
