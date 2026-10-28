@@ -295,6 +295,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - Quality + price + speed.
 - [Simon Willison's LLM Prices](https://llm-prices.com/) - Interactive calculator (moved from tools.simonwillison.net in May 2025).
 - [Helicone LLM Cost Comparison](https://www.helicone.ai/llm-cost) - 300+ model calculator.
+- [Jvlang AI](https://jvlangai.com/models) - Free Chinese-language lookup for third-party API quotes, billing units, collection timestamps, and source links; it does not test live model inference.
 - [Kingy.ai AI API Price Index](https://kingy.ai/kapi/price-index/) - Versioned, source-audited prices for exact API offerings; preserves seller, route, region, service tier, billing mode, cache treatment, and context band, with CC BY JSON/CSV and SHA-256 manifests.
 - [CostGoat](https://costgoat.com/compare/llm-api) - 302+ APIs from 10+ providers.
 - [Langtail](https://langtail.com/llm-price-comparison) - Side-by-side comparison.
