@@ -291,6 +291,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 ### Live Pricing Tools
 
 - [Price Per Token](https://pricepertoken.com/) - Daily-updated, 300+ models.
+- [PromptSpend](https://promptspend.com) - Open-source LLM price catalog that re-checks vendor pricing pages daily and shows the source and confirmation date for every price.
 - [Artificial Analysis Calculator](https://artificialanalysis.ai/tools/llm-price-calculator) - Free calculator, 100+ models.
 - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - Quality + price + speed.
 - [Simon Willison's LLM Prices](https://llm-prices.com/) - Interactive calculator (moved from tools.simonwillison.net in May 2025).
