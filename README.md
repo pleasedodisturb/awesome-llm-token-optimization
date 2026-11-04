@@ -427,6 +427,7 @@ _Prices per million tokens, checked 2026-10-25._
 | [TokenRouter](https://arxiv.org/abs/2610.12242)                             | 2026 | Serving system for token-level routing between models; 2.01-64.15x higher decoding throughput than existing serving systems (NeurIPS 2026)                                                                 |
 | [SaveRouter](https://arxiv.org/abs/2609.37402)                              | 2026 | Competitive routing from sparse supervision: 33-41% of the query-model feedback, breaking even 1.9-9.5x sooner than full labelling                                                                         |
 | [Dynamic LLM Routers are Often Misguided](https://arxiv.org/abs/2610.02762) | 2026 | Critique: across six commercial routers and 14 settings, none beats a random choice between two well-chosen models at matched cost (vendor-authored)                                                       |
+| [EC2-Bench](https://arxiv.org/abs/2610.17816)                               | 2026 | Edge-cloud collaboration benchmark for long-horizon agents: with a 9B edge model, collaboration reaches ~73% of cloud-only performance at ~15% of its cloud cost                                           |
 
 ### Context & Inference
 
