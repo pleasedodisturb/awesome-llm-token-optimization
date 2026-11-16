@@ -290,6 +290,7 @@ The [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Acces
 
 ### Live Pricing Tools
 
+- [AICostBudget AI API Pricing Dataset](https://aicostbudget.com/en/datasets/ai-api-pricing) - Source-linked JSON and CSV exports with documented cache and batch pricing fields and versioned snapshots.
 - [Price Per Token](https://pricepertoken.com/) - Daily-updated, 300+ models.
 - [Artificial Analysis Calculator](https://artificialanalysis.ai/tools/llm-price-calculator) - Free calculator, 100+ models.
 - [Artificial Analysis Leaderboard](https://artificialanalysis.ai/leaderboards/models) - Quality + price + speed.
