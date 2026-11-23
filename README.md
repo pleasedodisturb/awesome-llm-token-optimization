@@ -192,6 +192,10 @@ Rule-based lossless distillation achieves **3-4:1 compression** without any mode
 - [Anthropic Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) - Finding the smallest high-signal token set.
 - [Anthropic Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) - Managing context across extended workflows.
 
+### Memory & Retrieval
+
+- [Loom](https://github.com/ClickHouse/loom) - Self-hosted shared agent memory and code retrieval over MCP, with token-budgeted search and on-demand definition bodies. ![Stars](https://img.shields.io/github/stars/ClickHouse/loom)
+
 ### Chunking & Splitting
 
 - [Pinecone Chunking Guide](https://www.pinecone.io/learn/chunking-strategies/) - Fixed-length, semantic, hierarchical.
